@@ -40,7 +40,8 @@ METRIC_REP_SWITCH_LIST = "RepSwitchList"
 
 def get_result_dir() -> pathlib.PosixPath:
     if EMULATION_MODE:
-        path = pathlib.Path(FIGURE_DIR).joinpath("emulation").joinpath("target-{}s".format(LATENCY_TARGET)).joinpath(EXPERIMENT_ID)
+        emulation_root = os.getenv("EMULATION_FIGURES_SUBDIR", "emulation")
+        path = pathlib.Path(FIGURE_DIR).joinpath(emulation_root).joinpath("target-{}s".format(LATENCY_TARGET)).joinpath(EXPERIMENT_ID)
     else:
         path = pathlib.Path(FIGURE_DIR).joinpath("target-{}s".format(LATENCY_TARGET)).joinpath(EXPERIMENT_ID)
     os.makedirs(path, exist_ok=True)
