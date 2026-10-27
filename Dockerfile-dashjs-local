@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends iputils-ping ne
 WORKDIR /dash.js
 
 COPY dash.js/package.json dash.js/package-lock.json ./
-RUN npm ci
+# package.json "prepare" runs githook.js, which is not copied yet and is only a local git hook.
+RUN npm ci --ignore-scripts
 
 COPY dash.js/ ./
 
