@@ -1,0 +1,5 @@
+# Review I–class emulation. Required for CUBIC vs BBR claims.
+services:
+  nginx:
+    environment:
+      - SHAPER=clock

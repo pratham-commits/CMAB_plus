@@ -99,6 +99,8 @@ services:
     restart: always
     cap_add:
       - NET_ADMIN
+    environment:
+      - SHAPER=${SHAPER:-trace}
     networks:
       dashjs:
         ipv4_address: 192.167.0.107
