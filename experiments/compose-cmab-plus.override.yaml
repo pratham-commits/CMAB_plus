@@ -1,0 +1,16 @@
+# Build dash.js and the runner from this checkout so CMAB+ is actually served.
+# Hub images (clarkzjw/dashjs:master, clarkzjw/dashjs-runner:master) do not
+# contain these patches.
+services:
+  dashjs:
+    image: dashjs-cmab-plus:local
+    build:
+      context: .
+      dockerfile: Dockerfile-dashjs-local
+  runner:
+    image: dashjs-runner-cmab-plus:local
+    build:
+      context: .
+      dockerfile: Dockerfile-runner
+    environment:
+      - CMAB_HARDENED=1

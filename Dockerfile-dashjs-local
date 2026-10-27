@@ -1,0 +1,19 @@
+# Local dash.js (includes CMAB+). Do not use the Hub image clarkzjw/dashjs:master
+# for CMAB+ runs — that image does not contain this tree.
+FROM node:18.16.1
+
+RUN apt-get update && apt-get install -y --no-install-recommends iputils-ping net-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /dash.js
+
+COPY dash.js/package.json dash.js/package-lock.json ./
+RUN npm ci
+
+COPY dash.js/ ./
+
+EXPOSE 3000
+
+# Bind all interfaces. The published webpack config opens a browser and
+# defaults to localhost, which is unreachable from other containers.
+CMD ["npx", "webpack", "serve", "--config", "build/webpack.dev.js", "--mode", "development", "--host", "0.0.0.0", "--port", "3000", "--no-open"]
