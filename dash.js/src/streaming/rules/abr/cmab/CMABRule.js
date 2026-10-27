@@ -41,6 +41,7 @@ import CMABAbrController from './CMABAbrController';
 import MediaPlayerEvents from '../../../MediaPlayerEvents';
 import EventBus from '../../../../core/EventBus';
 import Settings from '../../../../core/Settings';
+import { BUFFER_FLOOR_SEC, chooseSwitchPriority } from './cmabPlusPolicy.js';
 
 const { loadPyodide } = require('pyodide');
 
@@ -185,14 +186,30 @@ function CMABRule(config) {
             currentBitrateKbps = currentBitrate / 1000.0;
             let maxBitrateKbps = bitrateList[bitrateList.length-1].bandwidth / 1000.0;
 
-            switchRequest.quality = CMABController.getCMABNextQuality(pyodide, context, bitrateList, cmabArms,
+            const cmabCfg = player_settings.get().streaming.abr.cmab || {};
+            const hardened = cmabCfg.hardened === true;
+            const decision = CMABController.getCMABNextQuality(pyodide, context, bitrateList, cmabArms,
                 currentQualityLevel, currentBitrateKbps, maxBitrateKbps,
                 currentLiveLatency, playbackRate,
                 throughput,
                 rebufferingEvents,
-                cmabAlpha);
-            switchRequest.reason = 'Switch bitrate based on CMAB';
-            switchRequest.priority = SwitchRequest.PRIORITY.STRONG;
+                cmabAlpha,
+                hardened);
+            switchRequest.quality = decision.quality;
+            const bufferLevelSec = dashMetrics.getCurrentBufferLevel
+                ? dashMetrics.getCurrentBufferLevel(mediaType)
+                : null;
+            const priorityChoice = chooseSwitchPriority(
+                hardened,
+                decision.clamped,
+                bufferLevelSec,
+                SwitchRequest.PRIORITY
+            );
+            switchRequest.reason = priorityChoice.reason;
+            switchRequest.priority = priorityChoice.priority;
+            if (hardened && bufferLevelSec !== null && bufferLevelSec < BUFFER_FLOOR_SEC) {
+                console.log('CMAB+ thin buffer', bufferLevelSec, 's; priority', priorityChoice.priority);
+            }
 
             scheduleController.setTimeToLoadDelay(0);
 

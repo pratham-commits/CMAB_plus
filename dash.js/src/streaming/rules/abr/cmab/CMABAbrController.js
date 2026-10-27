@@ -35,6 +35,7 @@
  */
 
 import FactoryMaker from '../../../../core/FactoryMaker';
+import { applyFeasibilityClamp, shouldForceMaxArm } from './cmabPlusPolicy.js';
 
 const statServerUrl = 'http://stat-server:8000';
 
@@ -362,11 +363,13 @@ function CMABAbrController() {
 
     function getCMABNextQuality(pyodide, context, bitrateList, cmabArms, currentQualityLevel,
         currentBitrateKbps, maxBitrateKbps, currentLiveLatency, playbackRate, throughput,
-        rebufferingEvents, cmabAlpha) {
+        rebufferingEvents, cmabAlpha, hardened) {
         let tic = new Date();
+        // Incoming throughput is already kbps and already × bandwidthSafetyFactor.
+        const throughputKbps = throughput;
 
         console.log('\n\ngetCMABNextQuality', tic);
-        console.log(`Throughput ${throughput} kbps, playbackSpeed ${playbackRate}, currentLatency ${currentLiveLatency}, currentBitrate ${currentBitrateKbps}, maxBitrate ${maxBitrateKbps}, currentQualityLevel ${currentQualityLevel}`);
+        console.log(`Throughput ${throughputKbps} kbps, playbackSpeed ${playbackRate}, currentLatency ${currentLiveLatency}, currentBitrate ${currentBitrateKbps}, maxBitrate ${maxBitrateKbps}, currentQualityLevel ${currentQualityLevel}, cmabPlus ${!!hardened}`);
 
         throughput = throughput / 1000.0;
 
@@ -411,11 +414,27 @@ function CMABAbrController() {
         window.js_rebuffer_events = rebufferingEvents;
         window.js_cmabAlpha = cmabAlpha;
 
-        // just recovered from satellite handover
-        if (_selectedArmsArray.length < cmabArms.length - 1) {
-            selectedArm = cmabArms.length - 1
+        let suggestedArm;
+        if (shouldForceMaxArm(!!hardened, _selectedArmsArray.length, cmabArms.length)) {
+            suggestedArm = cmabArms.length - 1;
         } else {
-            selectedArm = pyodide.runPython(_py_mabwiser_select_arm);
+            suggestedArm = pyodide.runPython(_py_mabwiser_select_arm);
+        }
+        const clampedDecision = applyFeasibilityClamp(
+            suggestedArm,
+            bitrateList,
+            throughputKbps,
+            !!hardened
+        );
+        selectedArm = clampedDecision.arm;
+        if (hardened) {
+            console.log(
+                'CMAB+ suggested', suggestedArm,
+                'maxFeasible', clampedDecision.maxFeasible,
+                'applied', selectedArm,
+                'clamped', clampedDecision.clamped,
+                'throughputKbps', throughputKbps
+            );
         }
 
         _selectedArmsArray.push(selectedArm);
@@ -432,6 +451,10 @@ function CMABAbrController() {
         sendStats(statServerUrl+'/qoe/', 'qoe', {
             reward_qoe: reward_qoe,
             arm: selectedArm,
+            suggested_arm: suggestedArm,
+            clamped: clampedDecision.clamped,
+            cmab_plus: !!hardened,
+            throughput_kbps: throughputKbps,
             video_bitrate: context.video_bitrate,
             bitrateRatio: bitrateRatio,
             currentLiveLatency: currentLiveLatency,
@@ -441,7 +464,12 @@ function CMABAbrController() {
 
         let toc = new Date();
         console.log('selected arm', selectedArm, 'time used' , timeDiff(tic, toc), 'seconds');
-        return selectedArm;
+        return {
+            quality: selectedArm,
+            suggestedArm: suggestedArm,
+            clamped: clampedDecision.clamped,
+            hardened: !!hardened,
+        };
     }
 
     instance = {

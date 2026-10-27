@@ -963,6 +963,8 @@ function Settings() {
             abr: {
                 cmab: {
                     alpha: 0.5,
+                    // CMAB+: no max-arm handover bootstrap, throughput clamp, conditional STRONG.
+                    hardened: false,
                 },
                 movingAverageMethod: Constants.MOVING_AVERAGE_SLIDING_WINDOW,
                 ABRStrategy: Constants.ABR_STRATEGY_DYNAMIC,

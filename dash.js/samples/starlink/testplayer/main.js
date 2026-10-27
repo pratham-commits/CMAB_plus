@@ -9,6 +9,7 @@ let App = function () {
     this.domElements = {
         settings: {
             cmabAlpha: 0.2,
+            cmabHardened: false,
         },
         metrics: {},
         chart: {},
@@ -278,6 +279,7 @@ App.prototype._applyParameters = function () {
             abr: {
                 cmab: {
                     alpha: settings.cmabAlpha,
+                    hardened: settings.cmabHardened,
                 },
                 buffer: {
                     fastSwitchEnabled: false,
@@ -329,6 +331,10 @@ App.prototype._adjustSettingsByUrlParameters = function () {
     if (params) {
         if (params.cmabAlpha !== undefined) {
             this.domElements.settings.cmabAlpha = parseFloat(params.cmabAlpha);
+        }
+        if (params.cmabHardened !== undefined) {
+            const flag = String(params.cmabHardened).toLowerCase();
+            this.domElements.settings.cmabHardened = flag === '1' || flag === 'true' || flag === 'yes';
         }
         if (params.targetLatency !== undefined) {
             this.domElements.settings.targetLatency.value = parseFloat(params.targetLatency).toFixed(1);
@@ -384,9 +390,11 @@ App.prototype._getCurrentSettings = function () {
     let catchupMechanism = document.querySelector('input[name="catchup"]:checked').value;
     let throughputCalculation = document.querySelector('input[name="throughput-calc"]:checked').value;
     let cmabAlpha = parseFloat(this.domElements.settings.cmabAlpha);
+    let cmabHardened = this.domElements.settings.cmabHardened === true;
 
     return {
         cmabAlpha,
+        cmabHardened,
         targetLatency,
         maxDrift,
         minCatchupPlaybackRate,
