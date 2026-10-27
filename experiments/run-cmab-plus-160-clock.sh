@@ -56,8 +56,13 @@ compose_files() {
 write_prod_override() {
   cat >"${OVERRIDE_PROD}" <<EOF
 # CMAB+ 160-run (${CC}) → figures/${FIG_SUBDIR}/
-# SHAPER=clock is set by compose-shaper-clock.override.yaml
+# Set both here. A later compose environment list replaces the earlier one,
+# which previously dropped TCP_CONGESTION_CONTROL and left the sender on cubic.
 services:
+  nginx:
+    environment:
+      - SHAPER=clock
+      - TCP_CONGESTION_CONTROL=${CC}
   runner:
     volumes:
       - ./experiments/batch-emulation.json:/batch.json
