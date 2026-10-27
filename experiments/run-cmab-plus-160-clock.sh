@@ -61,8 +61,8 @@ write_prod_override() {
 services:
   nginx:
     environment:
-      - SHAPER=clock
-      - TCP_CONGESTION_CONTROL=${CC}
+      SHAPER: "clock"
+      TCP_CONGESTION_CONTROL: "${CC}"
   runner:
     volumes:
       - ./experiments/batch-emulation.json:/batch.json
@@ -81,7 +81,10 @@ shaper_check() {
   sh="$("${DOCKER[@]}" exec "${NGINX}" printenv SHAPER 2>/dev/null || true)"
   local tc
   tc="$("${DOCKER[@]}" exec "${NGINX}" tc qdisc show dev eth0 2>/dev/null | head -1 || true)"
-  log "SHAPER=${sh} CC=${cc} tc=${tc}"
+  local requested
+  requested="$("${DOCKER[@]}" exec "${NGINX}" printenv TCP_CONGESTION_CONTROL 2>/dev/null || true)"
+  log "SHAPER=${sh} requested=${requested} CC=${cc} tc=${tc}"
+  [[ "${requested}" == "${CC}" ]] || { echo "FAIL: container env TCP_CONGESTION_CONTROL=${requested}, want ${CC}"; return 1; }
   [[ "${sh}" == "clock" ]] || { echo "FAIL: SHAPER must be clock (got '${sh}')"; return 1; }
   [[ "${cc}" == "${CC}" ]] || { echo "FAIL: expected tcp_congestion_control=${CC}, got '${cc}'"; return 1; }
   echo "${tc}" | grep -q tbf || { echo "FAIL: expected tbf qdisc from tc.py (clock), got: ${tc}"; return 1; }
@@ -103,7 +106,9 @@ preflight() {
 }
 
 start_stack() {
-  compose_files up -d stat-server mongo dashjs pyodide livesim2 chrome nginx mongo-express
+  compose_files up -d stat-server mongo dashjs pyodide livesim2 chrome mongo-express
+  # The previous nginx container stays up across retries and keeps CUBIC.
+  compose_files up -d --force-recreate --no-deps nginx
   log "Waiting for Selenium grid..."
   local i
   for i in $(seq 1 60); do
