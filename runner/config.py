@@ -45,6 +45,7 @@ class Experiment:
     CATCH_UP: str = ""
     EMULATION: bool = False
     CMAB_ALPHA: float = 0.5
+    CMAB_HARDENED: bool = False
 
     
     def __init__(self, obj: dict):
@@ -64,6 +65,8 @@ class Experiment:
             self.EMULATION = bool(obj["EMULATION"])
         if "CMAB_ALPHA" in obj.keys():
             self.CMAB_ALPHA = float(obj["CMAB_ALPHA"])
+        if "CMAB_HARDENED" in obj.keys():
+            self.CMAB_HARDENED = bool(obj["CMAB_HARDENED"])
         if "CATCH_UP" in obj.keys():
             self.CATCH_UP = obj["CATCH_UP"]
 

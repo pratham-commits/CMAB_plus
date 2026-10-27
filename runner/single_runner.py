@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.action_chains import ActionChains
+import os
 import time
 from selenium import webdriver
 from plot import generate_plots
@@ -58,6 +59,11 @@ def run_once(EXPERIMENT_ID: str, exp: Experiment) -> None:
             "abrAdditionalAbandonRequestRule": "true",
             "cmabAlpha": exp.CMAB_ALPHA,
         }
+        cmab_hardened = os.getenv("CMAB_HARDENED", "").lower() in ("1", "true", "yes")
+        if getattr(exp, "CMAB_HARDENED", False):
+            cmab_hardened = True
+        if exp.ABR_ALGORITHM == "abrCMAB" and cmab_hardened:
+            params["cmabHardened"] = "true"
         if exp.ABR_ALGORITHM == "abrLoLP":
             params["catchupMechanism"] = "liveCatchupModeLoLP"
         elif exp.ABR_ALGORITHM == "abrCMAB":
