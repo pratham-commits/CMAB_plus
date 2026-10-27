@@ -74,7 +74,16 @@ services:
 EOF
 }
 
+load_tcp_bbr() {
+  if [[ "${CC}" != "bbr" ]]; then
+    return 0
+  fi
+  sudo /sbin/modprobe tcp_bbr 2>/dev/null || sudo /usr/sbin/modprobe tcp_bbr 2>/dev/null || sudo modprobe tcp_bbr 2>/dev/null || true
+  "${DOCKER[@]}" exec "${NGINX}" sysctl -w net.ipv4.tcp_congestion_control=bbr >/dev/null
+}
+
 shaper_check() {
+  load_tcp_bbr || true
   local cc
   cc="$("${DOCKER[@]}" exec "${NGINX}" cat /proc/sys/net/ipv4/tcp_congestion_control 2>/dev/null || true)"
   local sh
@@ -100,8 +109,8 @@ preflight() {
   write_prod_override
   log "Building dashjs (local CMAB+), runner, and nginx..."
   compose_files build dashjs runner nginx
-  if [[ "${CC}" == "bbr" ]] && command -v modprobe >/dev/null 2>&1; then
-    sudo modprobe tcp_bbr 2>/dev/null || true
+  if [[ "${CC}" == "bbr" ]]; then
+    sudo /sbin/modprobe tcp_bbr 2>/dev/null || sudo /usr/sbin/modprobe tcp_bbr 2>/dev/null || sudo modprobe tcp_bbr 2>/dev/null || true
   fi
 }
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 /opt/bin/set-tcp-cc.sh
 
