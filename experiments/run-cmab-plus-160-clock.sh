@@ -79,7 +79,7 @@ load_tcp_bbr() {
     return 0
   fi
   sudo /sbin/modprobe tcp_bbr 2>/dev/null || sudo /usr/sbin/modprobe tcp_bbr 2>/dev/null || sudo modprobe tcp_bbr 2>/dev/null || true
-  "${DOCKER[@]}" exec "${NGINX}" sysctl -w net.ipv4.tcp_congestion_control=bbr >/dev/null
+  "${DOCKER[@]}" exec "${NGINX}" /usr/sbin/sysctl -w net.ipv4.tcp_congestion_control=bbr >/dev/null
 }
 
 shaper_check() {
