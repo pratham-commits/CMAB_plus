@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+/opt/bin/set-tcp-cc.sh
+
 /usr/bin/supervisord --configuration /etc/supervisor/supervisord.conf &
 
 SUPERVISOR_PID=$!

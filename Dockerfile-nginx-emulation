@@ -20,8 +20,9 @@ COPY shaper/supervisord.conf /etc/supervisor/supervisord.conf
 COPY runner/tc.py /tc.py
 COPY runner/tc-trace.py /tc-trace.py
 COPY shaper/entrypoint.sh /opt/bin/
+COPY shaper/set-tcp-cc.sh /opt/bin/
 
-RUN  mkdir -p /var/run/supervisor /var/log/supervisor && chmod +x /opt/bin/entrypoint.sh
+RUN  mkdir -p /var/run/supervisor /var/log/supervisor && chmod +x /opt/bin/entrypoint.sh /opt/bin/set-tcp-cc.sh
 
 ENV PYTHONUNBUFFERED 1
 
