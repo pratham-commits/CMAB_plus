@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import {
-    BUFFER_FLOOR_SEC,
     applyFeasibilityClamp,
+    applyLatencyStep,
     chooseSuggestedArm,
     chooseSwitchPriority,
+    isLatencyLate,
     maxFeasibleArm,
     shouldForceMaxArm,
     shouldProbeFeasibleArm,
@@ -51,10 +52,27 @@ assert.equal(maxFeasibleArm(ladder, Number.NaN), 0);
     assert.equal(d.clamped, false);
 }
 
-// STRONG only when the hardened decision is feasible and the buffer is healthy.
-assert.equal(chooseSwitchPriority(true, true, 2, priority).priority, DEFAULT);
-assert.equal(chooseSwitchPriority(true, false, 0.1, priority).priority, DEFAULT);
-assert.equal(chooseSwitchPriority(true, false, BUFFER_FLOOR_SEC, priority).priority, STRONG);
-assert.equal(chooseSwitchPriority(false, true, 0.1, priority).priority, STRONG);
+// While late, drop one rung from the current quality and do not jump back up.
+assert.equal(isLatencyLate(4.9, 3), true);
+assert.equal(isLatencyLate(3, 3), false);
+assert.equal(isLatencyLate(1, 0), false);
+{
+    const stepped = applyLatencyStep(7, 7, 8, true);
+    assert.equal(stepped.arm, 6);
+    assert.equal(stepped.steppedDown, true);
+}
+{
+    const held = applyLatencyStep(2, 7, 6, true);
+    assert.equal(held.arm, 2);
+    assert.equal(held.steppedDown, false);
+}
+assert.equal(applyLatencyStep(5, 7, 6, false).arm, 5);
+assert.equal(applyLatencyStep(5, 0, 6, true).arm, 0);
+
+// DEFAULT only for a clamped upward switch. A downswitch stays STRONG.
+assert.equal(chooseSwitchPriority(true, true, priority, 4, 2).priority, DEFAULT);
+assert.equal(chooseSwitchPriority(true, true, priority, 2, 6).priority, STRONG);
+assert.equal(chooseSwitchPriority(true, false, priority, 5, 2).priority, STRONG);
+assert.equal(chooseSwitchPriority(false, true, priority, 4, 2).priority, STRONG);
 
 console.log('cmabPlusPolicy: all assertions passed');

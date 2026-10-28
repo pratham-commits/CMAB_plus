@@ -4,8 +4,12 @@
  * Hardened mode:
  *   - during the same post-handover window, probes the highest feasible rung
  *     (bitrate <= safe throughput), never the absolute top of the ladder
- *   - after that window, LinTS is still clamped to that feasible rung
- *   - drops STRONG priority when the arm was clamped or the buffer is thin
+ *   - while live latency is above the target, that choice cannot rise, and it
+ *     steps down one rung from the current quality
+ *   - after that window, LinTS is still clamped to the feasible rung, then the
+ *     same one-rung step applies when latency is late
+ *   - an upward switch that was cut down to safe throughput uses DEFAULT
+ *     priority. A downward switch stays STRONG, including when the buffer is thin
  *
  * Throughput unit: kbps, same as dash.js getSafeAverageThroughput / bitrateList.bandwidth/1000.
  */
@@ -90,19 +94,57 @@ export function applyFeasibilityClamp(suggestedArm, bitrateList, throughputKbps,
 }
 
 /**
+ * Live latency is late when it is strictly above the configured target.
+ * Missing or non-positive targets are not late.
+ *
+ * @param {number} currentLiveLatency
+ * @param {number} targetLatencySec
+ * @returns {boolean}
+ */
+export function isLatencyLate(currentLiveLatency, targetLatencySec) {
+    const live = Number(currentLiveLatency);
+    const target = Number(targetLatencySec);
+    return Number.isFinite(live) && Number.isFinite(target) && target > 0 && live > target;
+}
+
+/**
+ * While late, the applied arm cannot sit above the rung just under the current
+ * quality. A suggestion that is already lower is kept. Each later decision can
+ * drop one more rung until latency is back at or under the target.
+ *
+ * @param {number} arm
+ * @param {number} currentQuality
+ * @param {number} armCount
+ * @param {boolean} latencyLate
+ * @returns {{arm: number, steppedDown: boolean}}
+ */
+export function applyLatencyStep(arm, currentQuality, armCount, latencyLate) {
+    const chosen = clampIndex(arm, armCount);
+    if (!latencyLate || !Number.isFinite(Number(currentQuality))) {
+        return { arm: chosen, steppedDown: false };
+    }
+    const current = clampIndex(currentQuality, armCount);
+    const capped = Math.min(chosen, Math.max(0, current - 1));
+    return { arm: capped, steppedDown: capped !== chosen };
+}
+
+/**
+ * DEFAULT only for an upward switch that the throughput clamp reduced.
+ * Downward switches stay STRONG so a late player can leave a high rung quickly.
+ *
  * @param {boolean} hardened
  * @param {boolean} clamped
- * @param {number|null} bufferLevelSec
  * @param {{STRONG: number, DEFAULT: number}} priority
+ * @param {number} nextQuality
+ * @param {number} currentQuality
  * @returns {{priority: number, reason: string}}
  */
-export function chooseSwitchPriority(hardened, clamped, bufferLevelSec, priority) {
-    const bufferUnsafe = Number.isFinite(bufferLevelSec) && bufferLevelSec < BUFFER_FLOOR_SEC;
-    if (hardened && clamped) {
-        return { priority: priority.DEFAULT, reason: 'CMAB+ clamped to safe throughput' };
-    }
-    if (hardened && bufferUnsafe) {
-        return { priority: priority.DEFAULT, reason: 'CMAB+ thin buffer' };
+export function chooseSwitchPriority(hardened, clamped, priority, nextQuality, currentQuality) {
+    const upward = Number.isFinite(Number(nextQuality))
+        && Number.isFinite(Number(currentQuality))
+        && Number(nextQuality) > Number(currentQuality);
+    if (hardened && clamped && upward) {
+        return { priority: priority.DEFAULT, reason: 'CMAB+ clamped upward switch' };
     }
     return { priority: priority.STRONG, reason: 'Switch bitrate based on CMAB' };
 }

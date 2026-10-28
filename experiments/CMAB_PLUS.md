@@ -4,7 +4,10 @@ Same LinTS CMAB. Three extra guards, off unless `cmabHardened=true`:
 
 1. After each 15 s handover slot, the probe target is the highest rung at or below safe throughput, not the top of the ladder.
 2. After that window, LinTS still cannot exceed safe throughput (`getSafeAverageThroughput`, already × 0.9).
-3. Switch priority is DEFAULT (not STRONG) when the arm was clamped or buffer &lt; 0.5 s.
+3. While live latency is above the target, the applied rung steps down one from the current quality and cannot jump back up.
+4. Switch priority is DEFAULT only for an upward switch that was cut down to safe throughput. A downward switch stays STRONG.
+
+Trial notes: `experiments/CMAB_PLUS_TRIALS.md`.
 
 `CMAB_HARDENED=1` on the runner adds the URL flag only for `abrCMAB` jobs. L2A, LoLP, and Dynamic are unchanged.
 

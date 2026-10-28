@@ -41,7 +41,7 @@ import CMABAbrController from './CMABAbrController';
 import MediaPlayerEvents from '../../../MediaPlayerEvents';
 import EventBus from '../../../../core/EventBus';
 import Settings from '../../../../core/Settings';
-import { BUFFER_FLOOR_SEC, chooseSwitchPriority } from './cmabPlusPolicy.js';
+import { chooseSwitchPriority } from './cmabPlusPolicy.js';
 
 const { loadPyodide } = require('pyodide');
 
@@ -196,20 +196,15 @@ function CMABRule(config) {
                 cmabAlpha,
                 hardened);
             switchRequest.quality = decision.quality;
-            const bufferLevelSec = dashMetrics.getCurrentBufferLevel
-                ? dashMetrics.getCurrentBufferLevel(mediaType)
-                : null;
             const priorityChoice = chooseSwitchPriority(
                 hardened,
                 decision.clamped,
-                bufferLevelSec,
-                SwitchRequest.PRIORITY
+                SwitchRequest.PRIORITY,
+                decision.quality,
+                currentQualityLevel
             );
             switchRequest.reason = priorityChoice.reason;
             switchRequest.priority = priorityChoice.priority;
-            if (hardened && bufferLevelSec !== null && bufferLevelSec < BUFFER_FLOOR_SEC) {
-                console.log('CMAB+ thin buffer', bufferLevelSec, 's; priority', priorityChoice.priority);
-            }
 
             scheduleController.setTimeToLoadDelay(0);
 

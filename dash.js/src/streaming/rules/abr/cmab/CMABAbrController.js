@@ -35,7 +35,7 @@
  */
 
 import FactoryMaker from '../../../../core/FactoryMaker';
-import { applyFeasibilityClamp, chooseSuggestedArm, maxFeasibleArm, shouldForceMaxArm, shouldProbeFeasibleArm } from './cmabPlusPolicy.js';
+import { applyFeasibilityClamp, applyLatencyStep, chooseSuggestedArm, isLatencyLate, maxFeasibleArm, shouldForceMaxArm, shouldProbeFeasibleArm } from './cmabPlusPolicy.js';
 
 const statServerUrl = 'http://stat-server:8000';
 
@@ -415,6 +415,7 @@ function CMABAbrController() {
         window.js_cmabAlpha = cmabAlpha;
 
         const feasibleNow = maxFeasibleArm(bitrateList, throughputKbps);
+        const latencyLate = isLatencyLate(currentLiveLatency, context && context.target_latency);
         let suggestedArm;
         if (shouldForceMaxArm(!!hardened, _selectedArmsArray.length, cmabArms.length)
             || shouldProbeFeasibleArm(!!hardened, _selectedArmsArray.length, cmabArms.length)) {
@@ -436,12 +437,18 @@ function CMABAbrController() {
             !!hardened
         );
         selectedArm = clampedDecision.arm;
+        let steppedDown = false;
         if (hardened) {
+            const stepped = applyLatencyStep(selectedArm, currentQualityLevel, cmabArms.length, latencyLate);
+            selectedArm = stepped.arm;
+            steppedDown = stepped.steppedDown;
             console.log(
                 'CMAB+ suggested', suggestedArm,
                 'maxFeasible', clampedDecision.maxFeasible,
                 'applied', selectedArm,
                 'clamped', clampedDecision.clamped,
+                'steppedDown', steppedDown,
+                'latencyLate', latencyLate,
                 'throughputKbps', throughputKbps
             );
         }
@@ -462,6 +469,8 @@ function CMABAbrController() {
             arm: selectedArm,
             suggested_arm: suggestedArm,
             clamped: clampedDecision.clamped,
+            stepped_down: steppedDown,
+            latency_late: latencyLate,
             cmab_plus: !!hardened,
             throughput_kbps: throughputKbps,
             video_bitrate: context.video_bitrate,
@@ -477,6 +486,8 @@ function CMABAbrController() {
             quality: selectedArm,
             suggestedArm: suggestedArm,
             clamped: clampedDecision.clamped,
+            steppedDown: steppedDown,
+            latencyLate: latencyLate,
             hardened: !!hardened,
         };
     }
