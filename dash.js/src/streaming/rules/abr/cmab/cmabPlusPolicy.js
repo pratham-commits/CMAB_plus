@@ -2,8 +2,9 @@
  * CMAB+ decision helpers (pure, unit-tested).
  *
  * Hardened mode:
- *   - does not force the top ladder rung after a handover timeslot
- *   - never requests a rung above safe throughput (already × bandwidthSafetyFactor)
+ *   - during the same post-handover window, probes the highest feasible rung
+ *     (bitrate <= safe throughput), never the absolute top of the ladder
+ *   - after that window, LinTS is still clamped to that feasible rung
  *   - drops STRONG priority when the arm was clamped or the buffer is thin
  *
  * Throughput unit: kbps, same as dash.js getSafeAverageThroughput / bitrateList.bandwidth/1000.
@@ -22,9 +23,25 @@ export function shouldForceMaxArm(hardened, decisionsAlreadyInSlot, armCount) {
     return !hardened && armCount > 1 && decisionsAlreadyInSlot < armCount - 1;
 }
 
-export function chooseSuggestedArm(hardened, decisionsAlreadyInSlot, armCount, linTsArm) {
+/**
+ * CMAB+ fills the same post-handover window as the paper, but the probe target
+ * is maxFeasible (kbps <= safe throughput), not the top ladder index.
+ *
+ * @param {boolean} hardened
+ * @param {number} decisionsAlreadyInSlot
+ * @param {number} armCount
+ * @returns {boolean}
+ */
+export function shouldProbeFeasibleArm(hardened, decisionsAlreadyInSlot, armCount) {
+    return !!hardened && armCount > 1 && decisionsAlreadyInSlot < armCount - 1;
+}
+
+export function chooseSuggestedArm(hardened, decisionsAlreadyInSlot, armCount, linTsArm, maxFeasible) {
     if (shouldForceMaxArm(hardened, decisionsAlreadyInSlot, armCount)) {
         return Math.max(0, armCount - 1);
+    }
+    if (shouldProbeFeasibleArm(hardened, decisionsAlreadyInSlot, armCount) && Number.isFinite(maxFeasible)) {
+        return clampIndex(maxFeasible, armCount);
     }
     return clampIndex(linTsArm, armCount);
 }

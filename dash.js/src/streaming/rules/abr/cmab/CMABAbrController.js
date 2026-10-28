@@ -35,7 +35,7 @@
  */
 
 import FactoryMaker from '../../../../core/FactoryMaker';
-import { applyFeasibilityClamp, shouldForceMaxArm } from './cmabPlusPolicy.js';
+import { applyFeasibilityClamp, chooseSuggestedArm, maxFeasibleArm, shouldForceMaxArm, shouldProbeFeasibleArm } from './cmabPlusPolicy.js';
 
 const statServerUrl = 'http://stat-server:8000';
 
@@ -414,9 +414,18 @@ function CMABAbrController() {
         window.js_rebuffer_events = rebufferingEvents;
         window.js_cmabAlpha = cmabAlpha;
 
+        const feasibleNow = maxFeasibleArm(bitrateList, throughputKbps);
         let suggestedArm;
-        if (shouldForceMaxArm(!!hardened, _selectedArmsArray.length, cmabArms.length)) {
-            suggestedArm = cmabArms.length - 1;
+        if (shouldForceMaxArm(!!hardened, _selectedArmsArray.length, cmabArms.length)
+            || shouldProbeFeasibleArm(!!hardened, _selectedArmsArray.length, cmabArms.length)) {
+            // Skip LinTS during the probe window so its state matches the paper bootstrap.
+            suggestedArm = chooseSuggestedArm(
+                !!hardened,
+                _selectedArmsArray.length,
+                cmabArms.length,
+                0,
+                feasibleNow
+            );
         } else {
             suggestedArm = pyodide.runPython(_py_mabwiser_select_arm);
         }

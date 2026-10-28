@@ -6,6 +6,7 @@ import {
     chooseSwitchPriority,
     maxFeasibleArm,
     shouldForceMaxArm,
+    shouldProbeFeasibleArm,
 } from '../dash.js/src/streaming/rules/abr/cmab/cmabPlusPolicy.js';
 
 const ladder = [200, 500, 1000, 2000, 4000, 6000].map((kbps) => ({ bandwidth: kbps * 1000 }));
@@ -19,11 +20,15 @@ assert.equal(shouldForceMaxArm(false, 6, 8), true);
 assert.equal(shouldForceMaxArm(false, 7, 8), false);
 assert.equal(chooseSuggestedArm(false, 0, 8, 2), 7);
 
-// CMAB+ never forces the top arm.
+// CMAB+ never forces the absolute top. It probes maxFeasible in that same window.
 assert.equal(shouldForceMaxArm(true, 0, 8), false);
-assert.equal(chooseSuggestedArm(true, 0, 8, 2), 2);
-assert.equal(chooseSuggestedArm(true, 0, 8, 99), 7);
-assert.equal(chooseSuggestedArm(true, 0, 8, -3), 0);
+assert.equal(shouldProbeFeasibleArm(true, 0, 6), true);
+assert.equal(shouldProbeFeasibleArm(true, 5, 6), false);
+assert.equal(chooseSuggestedArm(true, 0, 6, 0, maxFeasibleArm(ladder, 1500)), 2);
+assert.equal(chooseSuggestedArm(false, 0, 6, 0, maxFeasibleArm(ladder, 1500)), 5);
+assert.equal(chooseSuggestedArm(true, 5, 6, 2), 2);
+assert.equal(chooseSuggestedArm(true, 5, 6, 99), 5);
+assert.equal(chooseSuggestedArm(true, 5, 6, -3), 0);
 
 // Clamp uses kbps and does not request above throughput.
 assert.equal(maxFeasibleArm(ladder, 1500), 2);
