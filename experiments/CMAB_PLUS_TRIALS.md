@@ -22,9 +22,14 @@ Result: bitrate recovered (about 5200–5400 kbps). Latency did not. At 3 s, CMA
 
 ## Trial 3 — step down while late, strong downswitch
 
-Code, not yet run:
+Code: while live latency was strictly above the target, the applied rung could not rise and stepped one rung down per decision. A downward switch stayed strong.
 
-- While live latency is above the target, the applied rung cannot rise. It steps one rung down from the current quality. The next decision can step down again until latency is back at or under the target.
-- Normal priority only when an upward switch was cut down to safe throughput. A downward switch stays strong, including when the buffer is thin.
+Run: BBR clock, started 2026-10-30, stopped after 26 sessions. CMAB only.
 
-What would count as better than trial 2: at a 3 s target, latency near 3.3 s rather than 5 s, rebuffer near 0%, bitrate still in the 5000 kbps range rather than 900 kbps. Do not start the CUBIC matrix until a BBR run shows that.
+Result: latency was on target (3.17 s at a 3 s target, 4.19 s at 4 s) with 0% rebuffer, and bitrate was **300 kbps**. The bottom rung. A normal player sits slightly above the target (L2A is 3.12 s at a 3 s target), so `latency > target` stayed true even after the step-down had done its job. The ladder walked to arm 0 and was not allowed back up.
+
+## Trial 4 — step down only when clearly late
+
+Code, not yet run: the step-down now waits until latency is more than 1 s above the target. 3.17 s at a 3 s target is not late. 4.9 s still is. The strong-downswitch rule from trial 3 stays.
+
+What would count as better than trial 2: at a 3 s target, latency near 3.3 s rather than 5 s, rebuffer near 0%, bitrate still in the 5000 kbps range rather than 300 or 900 kbps. Do not start the CUBIC matrix until a BBR run shows that.

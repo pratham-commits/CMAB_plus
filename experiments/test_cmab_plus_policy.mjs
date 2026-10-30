@@ -54,6 +54,7 @@ assert.equal(maxFeasibleArm(ladder, Number.NaN), 0);
 
 // While late, drop one rung from the current quality and do not jump back up.
 assert.equal(isLatencyLate(4.9, 3), true);
+assert.equal(isLatencyLate(3.17, 3), false);
 assert.equal(isLatencyLate(3, 3), false);
 assert.equal(isLatencyLate(1, 0), false);
 {

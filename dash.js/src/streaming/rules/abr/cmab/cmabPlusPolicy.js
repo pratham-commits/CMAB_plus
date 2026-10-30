@@ -16,6 +16,10 @@
 
 export const BUFFER_FLOOR_SEC = 0.5;
 
+// A healthy player sits a little above the target (L2A ~3.1 s at a 3 s target).
+// Stepping down for any latency above the target walks the ladder to the bottom and stays there.
+export const LATENCY_LATE_MARGIN_SEC = 1.0;
+
 /**
  * @param {boolean} hardened
  * @param {number} decisionsAlreadyInSlot
@@ -94,8 +98,8 @@ export function applyFeasibilityClamp(suggestedArm, bitrateList, throughputKbps,
 }
 
 /**
- * Live latency is late when it is strictly above the configured target.
- * Missing or non-positive targets are not late.
+ * Live latency is late when it is more than LATENCY_LATE_MARGIN_SEC above the target.
+ * A few tenths over the target is the normal operating point, not a reason to step down.
  *
  * @param {number} currentLiveLatency
  * @param {number} targetLatencySec
@@ -104,7 +108,7 @@ export function applyFeasibilityClamp(suggestedArm, bitrateList, throughputKbps,
 export function isLatencyLate(currentLiveLatency, targetLatencySec) {
     const live = Number(currentLiveLatency);
     const target = Number(targetLatencySec);
-    return Number.isFinite(live) && Number.isFinite(target) && target > 0 && live > target;
+    return Number.isFinite(live) && Number.isFinite(target) && target > 0 && live > target + LATENCY_LATE_MARGIN_SEC;
 }
 
 /**
