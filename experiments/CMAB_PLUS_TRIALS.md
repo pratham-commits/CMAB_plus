@@ -30,6 +30,17 @@ Result: latency was on target (3.17 s at a 3 s target, 4.19 s at 4 s) with 0% re
 
 ## Trial 4 — step down only when clearly late
 
-Code, not yet run: the step-down now waits until latency is more than 1 s above the target. 3.17 s at a 3 s target is not late. 4.9 s still is. The strong-downswitch rule from trial 3 stays.
+Code: the step-down waits until latency is more than 1 s above the target. The strong-downswitch rule from trial 3 stays.
 
-What would count as better than trial 2: at a 3 s target, latency near 3.3 s rather than 5 s, rebuffer near 0%, bitrate still in the 5000 kbps range rather than 300 or 900 kbps. Do not start the CUBIC matrix until a BBR run shows that.
+Run: BBR clock, prefix `1030-0137`, 160 sessions. Saved in `review-3/bbr-cmab-plus-1030-0137/`.
+
+| Target | CMAB+ latency | L2A latency | CMAB+ rebuffer | CMAB+ kbps | L2A kbps |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 3 s | 3.32 s | 3.11 s | 0% | 4894 | 6000 |
+| 4 s | 4.21 s | 4.00 s | 0% | 5220 | 5550 |
+| 5 s | 5.21 s | 5.06 s | 0% | 5244 | 6000 |
+| 6 s | 6.23 s | 6.00 s | 0% | 5185 | 6000 |
+
+CMAB+ session-mean latency spread at 3 s is 0.06 s. Dynamic and LoLP sit with L2A. Unhardened CMAB on the earlier clock run was 3.29 s, 0% rebuffer, 5223 kbps at a 3 s target.
+
+This is the normal-link result. Latency is about 0.2 s above the other algorithms and about the same as unhardened CMAB. Rebuffer is 0. Bitrate is in the 4900–5200 kbps range, below L2A at 6000 and below the 300/900 kbps failures. CUBIC on this same player is the remaining normal-link matrix. The aggressive trace case is still untested.
