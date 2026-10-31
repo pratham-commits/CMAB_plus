@@ -60,6 +60,10 @@ write_prod_override() {
 # which previously dropped TCP_CONGESTION_CONTROL and left the sender on cubic.
 services:
   nginx:
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
     environment:
       SHAPER: "clock"
       TCP_CONGESTION_CONTROL: "${CC}"

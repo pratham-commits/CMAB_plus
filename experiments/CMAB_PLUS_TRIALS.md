@@ -43,4 +43,14 @@ Run: BBR clock, prefix `1030-0137`, 160 sessions. Saved in `review-3/bbr-cmab-pl
 
 CMAB+ session-mean latency spread at 3 s is 0.06 s. Dynamic and LoLP sit with L2A. Unhardened CMAB on the earlier clock run was 3.29 s, 0% rebuffer, 5223 kbps at a 3 s target.
 
-This is the normal-link result. Latency is about 0.2 s above the other algorithms and about the same as unhardened CMAB. Rebuffer is 0. Bitrate is in the 4900–5200 kbps range, below L2A at 6000 and below the 300/900 kbps failures. CUBIC on this same player is the remaining normal-link matrix. The aggressive trace case is still untested.
+This is the normal-link BBR result. Latency is about 0.2 s above the other algorithms and about the same as unhardened CMAB. Rebuffer is 0. Bitrate is in the 4900–5200 kbps range, below L2A at 6000 and below the 300/900 kbps failures.
+
+## Trial 4 on CUBIC — partial, prefix 1031-0032
+
+Same player as the BBR trial 4 run. Stopped after 7 CMAB sessions at a 3 s target: latency 3.98 s, 0% rebuffer, 3035 kbps. Old unhardened CUBIC CMAB was about 3.19 s and 4955 kbps. The 1 s step-down line for a 3 s target is 4.0 s. This run sat on that line. Under the line the probe still jumped to the highest feasible rung, which pushed latency back over the line.
+
+## Trial 5 — climb one rung when not late
+
+Code, not yet run: a downward step while late stays. When latency is not late, the applied rung may rise by at most one from the current quality, still capped by safe throughput. Cubic nginx is also started privileged, matching the BBR file, so `sysctl` can set `cubic`.
+
+Check on CUBIC at a 3 s target before leaving a full matrix: latency near 3.2 s and bitrate near 5000 kbps. The aggressive trace case is still untested.

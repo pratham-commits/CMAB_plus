@@ -69,6 +69,10 @@ assert.equal(isLatencyLate(1, 0), false);
 }
 assert.equal(applyLatencyStep(5, 7, 6, false).arm, 5);
 assert.equal(applyLatencyStep(5, 0, 6, true).arm, 0);
+// Not late: rise by one rung, do not jump to the suggested top.
+assert.equal(applyLatencyStep(7, 2, 8, false).arm, 3);
+// Not late: a lower suggestion is kept.
+assert.equal(applyLatencyStep(1, 4, 8, false).arm, 1);
 
 // DEFAULT only for a clamped upward switch. A downswitch stays STRONG.
 assert.equal(chooseSwitchPriority(true, true, priority, 4, 2).priority, DEFAULT);

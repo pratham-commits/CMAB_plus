@@ -4,10 +4,10 @@
  * Hardened mode:
  *   - during the same post-handover window, probes the highest feasible rung
  *     (bitrate <= safe throughput), never the absolute top of the ladder
- *   - while live latency is above the target, that choice cannot rise, and it
- *     steps down one rung from the current quality
- *   - after that window, LinTS is still clamped to the feasible rung, then the
- *     same one-rung step applies when latency is late
+ *   - while live latency is more than 1 s above the target, the choice steps
+ *     down one rung and cannot rise
+ *   - otherwise the choice may rise by at most one rung, still capped by safe
+ *     throughput, so a recovery does not jump to the top feasible rung
  *   - an upward switch that was cut down to safe throughput uses DEFAULT
  *     priority. A downward switch stays STRONG, including when the buffer is thin
  *
@@ -113,8 +113,8 @@ export function isLatencyLate(currentLiveLatency, targetLatencySec) {
 
 /**
  * While late, the applied arm cannot sit above the rung just under the current
- * quality. A suggestion that is already lower is kept. Each later decision can
- * drop one more rung until latency is back at or under the target.
+ * quality. A suggestion that is already lower is kept.
+ * While not late, an upward move is at most one rung. A lower suggestion is kept.
  *
  * @param {number} arm
  * @param {number} currentQuality
@@ -124,10 +124,14 @@ export function isLatencyLate(currentLiveLatency, targetLatencySec) {
  */
 export function applyLatencyStep(arm, currentQuality, armCount, latencyLate) {
     const chosen = clampIndex(arm, armCount);
-    if (!latencyLate || !Number.isFinite(Number(currentQuality))) {
+    if (!Number.isFinite(Number(currentQuality))) {
         return { arm: chosen, steppedDown: false };
     }
     const current = clampIndex(currentQuality, armCount);
+    if (!latencyLate) {
+        const capped = Math.min(chosen, current + 1);
+        return { arm: capped, steppedDown: false };
+    }
     const capped = Math.min(chosen, Math.max(0, current - 1));
     return { arm: capped, steppedDown: capped !== chosen };
 }
