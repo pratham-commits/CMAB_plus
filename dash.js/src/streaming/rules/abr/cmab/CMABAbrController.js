@@ -35,7 +35,7 @@
  */
 
 import FactoryMaker from '../../../../core/FactoryMaker';
-import { applyFeasibilityClamp, applyLatencyStep, chooseSuggestedArm, isLatencyLate, isOnTime, maxFeasibleArm, shouldForceMaxArm, shouldProbeFeasibleArm } from './cmabPlusPolicy.js';
+import { applyFeasibilityClamp, applyLatencyStep, chooseSuggestedArm, isLatencyLate, maxFeasibleArm, shouldForceMaxArm, shouldProbeFeasibleArm } from './cmabPlusPolicy.js';
 
 const statServerUrl = 'http://stat-server:8000';
 
@@ -416,7 +416,6 @@ function CMABAbrController() {
 
         const feasibleNow = maxFeasibleArm(bitrateList, throughputKbps);
         const latencyLate = isLatencyLate(currentLiveLatency, context && context.target_latency);
-        const onTime = isOnTime(currentLiveLatency, context && context.target_latency);
         let suggestedArm;
         if (shouldForceMaxArm(!!hardened, _selectedArmsArray.length, cmabArms.length)
             || shouldProbeFeasibleArm(!!hardened, _selectedArmsArray.length, cmabArms.length)) {
@@ -440,7 +439,7 @@ function CMABAbrController() {
         selectedArm = clampedDecision.arm;
         let steppedDown = false;
         if (hardened) {
-            const stepped = applyLatencyStep(selectedArm, currentQualityLevel, cmabArms.length, latencyLate, onTime);
+            const stepped = applyLatencyStep(selectedArm, currentQualityLevel, cmabArms.length, latencyLate);
             selectedArm = stepped.arm;
             steppedDown = stepped.steppedDown;
             console.log(
@@ -450,7 +449,6 @@ function CMABAbrController() {
                 'clamped', clampedDecision.clamped,
                 'steppedDown', steppedDown,
                 'latencyLate', latencyLate,
-                'onTime', onTime,
                 'throughputKbps', throughputKbps
             );
         }

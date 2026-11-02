@@ -5,7 +5,6 @@ import {
     chooseSuggestedArm,
     chooseSwitchPriority,
     isLatencyLate,
-    isOnTime,
     maxFeasibleArm,
     shouldForceMaxArm,
     shouldProbeFeasibleArm,
@@ -68,16 +67,11 @@ assert.equal(isLatencyLate(1, 0), false);
     assert.equal(held.arm, 2);
     assert.equal(held.steppedDown, false);
 }
-assert.equal(isOnTime(2.9, 3), true);
-assert.equal(isOnTime(3.8, 3), false);
-assert.equal(isOnTime(0, 3), false);
 assert.equal(applyLatencyStep(5, 7, 6, false).arm, 5);
 assert.equal(applyLatencyStep(5, 0, 6, true).arm, 0);
-// Between the target and the late line: half the upward gap.
-assert.equal(applyLatencyStep(7, 2, 8, false, false).arm, 4);
-// At or under the target: the throughput-clamped suggestion stands.
-assert.equal(applyLatencyStep(7, 2, 8, false, true).arm, 7);
-// A lower suggestion is kept.
+// Not late: the throughput-clamped suggestion stands, including a jump up.
+assert.equal(applyLatencyStep(7, 2, 8, false).arm, 7);
+// A lower suggestion is kept when not late.
 assert.equal(applyLatencyStep(1, 4, 8, false).arm, 1);
 
 // DEFAULT only for a clamped upward switch. A downswitch stays STRONG.
