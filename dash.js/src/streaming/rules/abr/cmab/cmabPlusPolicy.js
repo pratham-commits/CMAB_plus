@@ -4,10 +4,9 @@
  * Hardened mode:
  *   - during the same post-handover window, probes the highest feasible rung
  *     (bitrate <= safe throughput), never the absolute top of the ladder
- *   - while live latency is more than 1 s above the target, the choice steps
- *     down one rung and cannot rise
- *   - otherwise the choice may rise by at most one rung, still capped by safe
- *     throughput, so a recovery does not jump to the top feasible rung
+ *   - at or under the live-latency target, the throughput-clamped rung is used
+ *   - between the target and 1 s over it, an upward move covers half the gap
+ *   - more than 1 s over the target, the choice steps down one rung
  *   - an upward switch that was cut down to safe throughput uses DEFAULT
  *     priority. A downward switch stays STRONG, including when the buffer is thin
  *
@@ -112,28 +111,48 @@ export function isLatencyLate(currentLiveLatency, targetLatencySec) {
 }
 
 /**
- * While late, the applied arm cannot sit above the rung just under the current
- * quality. A suggestion that is already lower is kept.
- * While not late, an upward move is at most one rung. A lower suggestion is kept.
+ * On time only when a real latency sample is at or under the target.
+ * A zero or missing sample is not treated as on time.
+ *
+ * @param {number} currentLiveLatency
+ * @param {number} targetLatencySec
+ * @returns {boolean}
+ */
+export function isOnTime(currentLiveLatency, targetLatencySec) {
+    const live = Number(currentLiveLatency);
+    const target = Number(targetLatencySec);
+    return Number.isFinite(live) && Number.isFinite(target) && target > 0 && live > 0 && live <= target;
+}
+
+/**
+ * Late: one rung down, and no rise.
+ * On time: the throughput-clamped suggestion stands.
+ * In between: half the upward gap, so a 3 s session is not stuck walking one rung
+ * at a time and also does not jump the whole ladder while already over the target.
+ * A suggestion below the current quality is kept in every band.
  *
  * @param {number} arm
  * @param {number} currentQuality
  * @param {number} armCount
  * @param {boolean} latencyLate
+ * @param {boolean} onTime
  * @returns {{arm: number, steppedDown: boolean}}
  */
-export function applyLatencyStep(arm, currentQuality, armCount, latencyLate) {
+export function applyLatencyStep(arm, currentQuality, armCount, latencyLate, onTime) {
     const chosen = clampIndex(arm, armCount);
     if (!Number.isFinite(Number(currentQuality))) {
         return { arm: chosen, steppedDown: false };
     }
     const current = clampIndex(currentQuality, armCount);
-    if (!latencyLate) {
-        const capped = Math.min(chosen, current + 1);
-        return { arm: capped, steppedDown: false };
+    if (latencyLate) {
+        const capped = Math.min(chosen, Math.max(0, current - 1));
+        return { arm: capped, steppedDown: capped !== chosen };
     }
-    const capped = Math.min(chosen, Math.max(0, current - 1));
-    return { arm: capped, steppedDown: capped !== chosen };
+    if (onTime || chosen <= current) {
+        return { arm: chosen, steppedDown: false };
+    }
+    const step = Math.max(1, Math.floor((chosen - current) / 2));
+    return { arm: Math.min(chosen, current + step), steppedDown: false };
 }
 
 /**

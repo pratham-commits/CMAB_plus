@@ -54,3 +54,11 @@ Same player as the BBR trial 4 run. Stopped after 7 CMAB sessions at a 3 s targe
 Code, not yet run: a downward step while late stays. When latency is not late, the applied rung may rise by at most one from the current quality, still capped by safe throughput. Cubic nginx is also started privileged, matching the BBR file, so `sysctl` can set `cubic`.
 
 Check on CUBIC at a 3 s target before leaving a full matrix: latency near 3.2 s and bitrate near 5000 kbps. The aggressive trace case is still untested.
+
+## Trial 5 result — CUBIC prefix 1031-2231
+
+Commit `fe5023d`. Full 160. At 3 s, CMAB+ was 3.85 s and 2626 kbps, against old CUBIC CMAB at 3.19 s and 4955 kbps. All 10 sessions sat there, and the bottom arm was the most used. At 6 s it matched old CMAB (6.24 s, 5081 kbps). One-rung climbing while latency stayed between 3 s and 4 s could not reach the 5000 kbps rung.
+
+## Trial 6 — full climb on time, half gap when slightly over
+
+Code, not yet run. At or under the target, the throughput-clamped rung is used. Between the target and 1 s over it, an upward move covers half the remaining gap. More than 1 s over, step down one rung. A lower suggestion is always kept.
