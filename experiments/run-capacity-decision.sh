@@ -128,15 +128,18 @@ shaper_check() {
 
 wait_for_grid() {
   log "Waiting for Selenium grid..."
-  local i
+  local i body
   for i in $(seq 1 60); do
-    if curl -sf http://127.0.0.1:4444/status | grep -q '"ready":true'; then
+    body="$(curl -sf -m 3 http://127.0.0.1:4444/status || true)"
+    if echo "${body}" | grep -Eq '"ready"[[:space:]]*:[[:space:]]*true'; then
       log "Grid ready (${i})"
       return 0
     fi
     sleep 5
   done
   echo "FAIL: Selenium grid did not become ready" >&2
+  echo "Last /status: ${body:-<no response>}" >&2
+  docker ps -a --filter name=chrome --format '{{.Names}} {{.Status}}' >&2 || true
   return 1
 }
 
