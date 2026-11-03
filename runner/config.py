@@ -64,8 +64,7 @@ class Experiment:
             self.EMULATION = bool(obj["EMULATION"])
         if "CMAB_ALPHA" in obj.keys():
             self.CMAB_ALPHA = float(obj["CMAB_ALPHA"])
-        if "CMAB_HARDENED" in obj.keys():
-            self.CMAB_HARDENED = bool(obj["CMAB_HARDENED"])
+        self.CMAB_HARDENED = bool(obj["CMAB_HARDENED"]) if "CMAB_HARDENED" in obj else False
         if "CATCH_UP" in obj.keys():
             self.CATCH_UP = obj["CATCH_UP"]
         # Same player algorithm, different folder, so old CMAB and CMAB+ can share a batch.
