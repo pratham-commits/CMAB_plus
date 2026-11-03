@@ -194,7 +194,11 @@ run_one_rate() {
   log "Waiting for ${RUNNER} to finish ${rate} mbit..."
   local rc
   rc="$("${DOCKER[@]}" wait "${RUNNER}")"
-  [[ "${rc}" == "0" ]] || { echo "FAIL: ${RUNNER} exited ${rc} during ${rate} mbit"; return 1; }
+  [[ "${rc}" == "0" ]] || {
+    echo "FAIL: ${RUNNER} exited ${rc} during ${rate} mbit" >&2
+    "${DOCKER[@]}" logs --tail 40 "${RUNNER}" >&2 || true
+    return 1
+  }
   "${DOCKER[@]}" logs "${RUNNER}" 2>&1 | grep -q 'Video Streaming completed' \
     || { echo "FAIL: ${rate} mbit runner exited without Video Streaming completed"; return 1; }
   local n

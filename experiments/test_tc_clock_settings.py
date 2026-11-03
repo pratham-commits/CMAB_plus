@@ -33,6 +33,7 @@ def main() -> None:
         assert hand_netem[hand_netem.index("delay") + 1] == "100ms"
         assert hand_netem[hand_netem.index("loss") + 1] == "1%"
         assert tc.get_handover_time() == {12, 27, 42, 57}
+        assert callable(tc.tc_thread)
 
         os.environ["CLOCK_RATE_MBIT"] = "4"
         os.environ["CLOCK_HANDOVER_LOSS_PERCENT"] = "20"

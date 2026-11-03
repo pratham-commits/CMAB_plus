@@ -154,6 +154,19 @@ def tc_del() -> None:
     subprocess.check_output(["tc", "qdisc", "del", "dev", ETHERNET, "root"])
 
 
+def tc_thread() -> None:
+    """Imported by the runner. The shaper itself runs from __main__ inside nginx."""
+    load_config()
+    handover = get_handover_time()
+    while True:
+        now = datetime.now().second
+        if is_now_handover(now, handover):
+            set_delay()
+        else:
+            tc_reset()
+        time.sleep(0.1)
+
+
 if __name__ == "__main__":
     load_config()
     print(
