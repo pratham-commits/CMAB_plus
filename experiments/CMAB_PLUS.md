@@ -4,7 +4,7 @@ Same LinTS CMAB. Three extra guards, off unless `cmabHardened=true`:
 
 1. After each 15 s handover slot, the probe target is the highest rung at or below safe throughput, not the top of the ladder.
 2. After that window, LinTS still cannot exceed safe throughput (`getSafeAverageThroughput`, already × 0.9).
-3. More than 1 s above the target, the rung steps down one and cannot rise. Otherwise the throughput-clamped suggestion is used.
+3. When the quality already playing is faster than measured throughput, the rung steps down one and cannot rise on that decision. Otherwise the throughput-clamped suggestion is used. Latency sitting a little over the target is not a cut.
 4. Switch priority is DEFAULT only for an upward switch that was cut down to safe throughput. A downward switch stays STRONG.
 
 Trial notes: `experiments/CMAB_PLUS_TRIALS.md`.
@@ -41,3 +41,19 @@ Figures:
 - `figures/emulation-cmab-plus-cubic/`
 
 Confirm a CMAB session URL in `docker logs dashjs-runner` contains `cmabHardened=true`. QoE posts include `cmab_plus`, `clamped`, and `suggested_arm`.
+
+## GCP — capacity decision, 15 sessions per speed
+
+Old CMAB, CMAB+, and L2A, 3 s target, 5 rounds. Speeds are 8, then 4, then 1 Mbit. About 4 hours per congestion control. Do not run CUBIC and BBR at the same time.
+
+```bash
+cd ~/mmsys24-starlink-livestreaming
+chmod +x experiments/run-capacity-decision.sh
+./experiments/run-capacity-decision.sh cubic
+# after it finishes:
+./experiments/run-capacity-decision.sh bbr
+```
+
+One speed only: `./experiments/run-capacity-decision.sh cubic 4`.
+
+The script refuses to start a speed unless nginx is `SHAPER=clock` at that rate. Runner `CMAB_HARDENED` must be `0`. Old CMAB URLs have no `cmabHardened=true`. CMAB+ URLs do, and their folders are named `abrCMABPlus-...`. Figures land in `figures/emulation-capacity-<cc>-<rate>mbit/`. Each speed is done when the log says `Video Streaming completed` and that folder has 15 `playback_latency.json` files.

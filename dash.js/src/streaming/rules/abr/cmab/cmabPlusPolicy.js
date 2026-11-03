@@ -4,9 +4,10 @@
  * Hardened mode:
  *   - during the same post-handover window, probes the highest feasible rung
  *     (bitrate <= safe throughput), never the absolute top of the ladder
- *   - more than 1 s over the target, the choice steps down one rung and cannot rise
+ *   - when the current rung is faster than measured throughput, the choice steps
+ *     down one rung and cannot rise on that decision
  *   - otherwise the throughput-clamped suggestion is used, including a climb to the
- *     highest feasible rung
+ *     highest feasible rung. Being a little over the latency target is not a cut
  *   - an upward switch that was cut down to safe throughput uses DEFAULT
  *     priority. A downward switch stays STRONG, including when the buffer is thin
  *
@@ -111,19 +112,38 @@ export function isLatencyLate(currentLiveLatency, targetLatencySec) {
 }
 
 /**
- * Late: one rung down, and no rise. Otherwise the throughput-clamped suggestion
- * stands, so a session that is only slightly over the target can still reach the
- * feasible rung. A suggestion below the current quality is kept.
+ * True when the rung already playing is faster than measured throughput.
+ * An unknown quality (-1) or a non-positive bitrate does not count.
+ *
+ * @param {number} currentBitrateKbps
+ * @param {number} throughputKbps
+ * @param {number} currentQuality
+ * @returns {boolean}
+ */
+export function isCurrentAboveThroughput(currentBitrateKbps, throughputKbps, currentQuality) {
+    const quality = Number(currentQuality);
+    const current = Number(currentBitrateKbps);
+    const throughput = Number(throughputKbps);
+    return Number.isFinite(quality) && quality >= 0
+        && Number.isFinite(current) && current > 0
+        && Number.isFinite(throughput)
+        && current > throughput;
+}
+
+/**
+ * Above throughput: one rung down, and no rise. Otherwise the throughput-clamped
+ * suggestion stands, including a climb to the feasible rung. A suggestion below
+ * the current quality is kept.
  *
  * @param {number} arm
  * @param {number} currentQuality
  * @param {number} armCount
- * @param {boolean} latencyLate
+ * @param {boolean} aboveThroughput
  * @returns {{arm: number, steppedDown: boolean}}
  */
-export function applyLatencyStep(arm, currentQuality, armCount, latencyLate) {
+export function applyLatencyStep(arm, currentQuality, armCount, aboveThroughput) {
     const chosen = clampIndex(arm, armCount);
-    if (!latencyLate || !Number.isFinite(Number(currentQuality))) {
+    if (!aboveThroughput || !Number.isFinite(Number(currentQuality))) {
         return { arm: chosen, steppedDown: false };
     }
     const current = clampIndex(currentQuality, armCount);

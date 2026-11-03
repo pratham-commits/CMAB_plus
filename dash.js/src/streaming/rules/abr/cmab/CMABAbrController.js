@@ -35,7 +35,7 @@
  */
 
 import FactoryMaker from '../../../../core/FactoryMaker';
-import { applyFeasibilityClamp, applyLatencyStep, chooseSuggestedArm, isLatencyLate, maxFeasibleArm, shouldForceMaxArm, shouldProbeFeasibleArm } from './cmabPlusPolicy.js';
+import { applyFeasibilityClamp, applyLatencyStep, chooseSuggestedArm, isCurrentAboveThroughput, isLatencyLate, maxFeasibleArm, shouldForceMaxArm, shouldProbeFeasibleArm } from './cmabPlusPolicy.js';
 
 const statServerUrl = 'http://stat-server:8000';
 
@@ -416,6 +416,7 @@ function CMABAbrController() {
 
         const feasibleNow = maxFeasibleArm(bitrateList, throughputKbps);
         const latencyLate = isLatencyLate(currentLiveLatency, context && context.target_latency);
+        const aboveThroughput = isCurrentAboveThroughput(currentBitrateKbps, throughputKbps, currentQualityLevel);
         let suggestedArm;
         if (shouldForceMaxArm(!!hardened, _selectedArmsArray.length, cmabArms.length)
             || shouldProbeFeasibleArm(!!hardened, _selectedArmsArray.length, cmabArms.length)) {
@@ -439,7 +440,7 @@ function CMABAbrController() {
         selectedArm = clampedDecision.arm;
         let steppedDown = false;
         if (hardened) {
-            const stepped = applyLatencyStep(selectedArm, currentQualityLevel, cmabArms.length, latencyLate);
+            const stepped = applyLatencyStep(selectedArm, currentQualityLevel, cmabArms.length, aboveThroughput);
             selectedArm = stepped.arm;
             steppedDown = stepped.steppedDown;
             console.log(
@@ -448,6 +449,7 @@ function CMABAbrController() {
                 'applied', selectedArm,
                 'clamped', clampedDecision.clamped,
                 'steppedDown', steppedDown,
+                'aboveThroughput', aboveThroughput,
                 'latencyLate', latencyLate,
                 'throughputKbps', throughputKbps
             );
@@ -470,6 +472,7 @@ function CMABAbrController() {
             suggested_arm: suggestedArm,
             clamped: clampedDecision.clamped,
             stepped_down: steppedDown,
+            above_throughput: aboveThroughput,
             latency_late: latencyLate,
             cmab_plus: !!hardened,
             throughput_kbps: throughputKbps,
@@ -487,6 +490,7 @@ function CMABAbrController() {
             suggestedArm: suggestedArm,
             clamped: clampedDecision.clamped,
             steppedDown: steppedDown,
+            aboveThroughput: aboveThroughput,
             latencyLate: latencyLate,
             hardened: !!hardened,
         };

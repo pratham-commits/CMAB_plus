@@ -4,6 +4,7 @@ import {
     applyLatencyStep,
     chooseSuggestedArm,
     chooseSwitchPriority,
+    isCurrentAboveThroughput,
     isLatencyLate,
     maxFeasibleArm,
     shouldForceMaxArm,
@@ -52,11 +53,19 @@ assert.equal(maxFeasibleArm(ladder, Number.NaN), 0);
     assert.equal(d.clamped, false);
 }
 
-// While late, drop one rung from the current quality and do not jump back up.
+// Latency can sit a little over the target. That alone is not the step-down.
 assert.equal(isLatencyLate(4.9, 3), true);
 assert.equal(isLatencyLate(3.17, 3), false);
 assert.equal(isLatencyLate(3, 3), false);
 assert.equal(isLatencyLate(1, 0), false);
+
+// Step down only when the rung already playing is faster than measured throughput.
+assert.equal(isCurrentAboveThroughput(4900, 3000, 5), true);
+assert.equal(isCurrentAboveThroughput(1500, 3000, 4), false);
+assert.equal(isCurrentAboveThroughput(3000, 3000, 4), false);
+assert.equal(isCurrentAboveThroughput(4900, 3000, -1), false);
+assert.equal(isCurrentAboveThroughput(0, 100, 0), false);
+assert.equal(isCurrentAboveThroughput(4900, Number.NaN, 5), false);
 {
     const stepped = applyLatencyStep(7, 7, 8, true);
     assert.equal(stepped.arm, 6);
@@ -69,9 +78,9 @@ assert.equal(isLatencyLate(1, 0), false);
 }
 assert.equal(applyLatencyStep(5, 7, 6, false).arm, 5);
 assert.equal(applyLatencyStep(5, 0, 6, true).arm, 0);
-// Not late: the throughput-clamped suggestion stands, including a jump up.
+// Current rung still fits: the throughput-clamped suggestion stands, including a jump up.
 assert.equal(applyLatencyStep(7, 2, 8, false).arm, 7);
-// A lower suggestion is kept when not late.
+// A lower suggestion is kept when the current rung fits.
 assert.equal(applyLatencyStep(1, 4, 8, false).arm, 1);
 
 // DEFAULT only for a clamped upward switch. A downswitch stays STRONG.

@@ -57,7 +57,6 @@ class Experiment:
         self.CONSTANT_VIDEO_BITRATE = int(obj["CONSTANT_VIDEO_BITRATE"])
         self.MPD_URL = obj["MPD_URL"]
         self.ABR_ALGORITHM = obj["ABR_ALGORITHM"]
-        self.EXPERIMENT_ID = "{}-{}-target-latency-{}s-duration-{}-bitrate-{}".format(self.ABR_ALGORITHM, get_exp_date(), self.TARGET_LATENCY, self.ROUND_DURATION, "variable" if self.CONSTANT_VIDEO_BITRATE == -1 else "constant-{}".format(self.CONSTANT_VIDEO_BITRATE))
         # from https://dl.acm.org/doi/10.1145/3587819.3590971
         self.MAX_CATCHUP_PLAYBACK_RATE = 0.17
         self.MIN_CATCHUP_PLAYBACK_RATE = -0.17
@@ -69,6 +68,11 @@ class Experiment:
             self.CMAB_HARDENED = bool(obj["CMAB_HARDENED"])
         if "CATCH_UP" in obj.keys():
             self.CATCH_UP = obj["CATCH_UP"]
+        # Same player algorithm, different folder, so old CMAB and CMAB+ can share a batch.
+        label = self.ABR_ALGORITHM
+        if self.ABR_ALGORITHM == "abrCMAB" and self.CMAB_HARDENED:
+            label = "abrCMABPlus"
+        self.EXPERIMENT_ID = "{}-{}-target-latency-{}s-duration-{}-bitrate-{}".format(label, get_exp_date(), self.TARGET_LATENCY, self.ROUND_DURATION, "variable" if self.CONSTANT_VIDEO_BITRATE == -1 else "constant-{}".format(self.CONSTANT_VIDEO_BITRATE))
 
 
 BATCH_JSON = "/batch.json"
