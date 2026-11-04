@@ -57,3 +57,17 @@ chmod +x experiments/run-capacity-decision.sh
 One speed only: `./experiments/run-capacity-decision.sh cubic 4`.
 
 The script refuses to start a speed unless nginx is `SHAPER=clock` at that rate. Runner `CMAB_HARDENED` must be `0`. Old CMAB URLs have no `cmabHardened=true`. CMAB+ URLs do, and their folders are named `abrCMABPlus-...`. Figures land in `figures/emulation-capacity-<cc>-<rate>mbit/`. Each speed is done when the log says `Video Streaming completed` and that folder has 15 `playback_latency.json` files.
+
+## GCP — clock non-regression, targets 3/4/5/6 s
+
+Paper clock (100 Mbit normal, 50 Mbit handover). Old CMAB, CMAB+, L2A. Five rounds per cell. 60 sessions per congestion control, about 5 hours of video. Do not run CUBIC and BBR at the same time.
+
+```bash
+cd ~/mmsys24-starlink-livestreaming
+chmod +x experiments/run-clock-nonregression.sh
+./experiments/run-clock-nonregression.sh cubic
+# after it finishes:
+./experiments/run-clock-nonregression.sh bbr
+```
+
+Figures: `figures/emulation-clock-nonreg-cubic/` and `figures/emulation-clock-nonreg-bbr/`. Expect 60 `playback_latency.json` files each. The script refuses to start unless nginx is `SHAPER=clock` at 100 Mbit with handover rate 50.
