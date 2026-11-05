@@ -71,3 +71,17 @@ chmod +x experiments/run-clock-nonregression.sh
 ```
 
 Figures: `figures/emulation-clock-nonreg-cubic/` and `figures/emulation-clock-nonreg-bbr/`. Expect 60 `playback_latency.json` files each. The script refuses to start unless nginx is `SHAPER=clock` at 100 Mbit with handover rate 50.
+
+## GCP — 4 Mbit target robustness, targets 3/4/5/6 s
+
+Same capacity shaper as the decision run (fixed 4 Mbit; handover rate stays 4; mild 100 ms / 1% loss). Old CMAB, CMAB+, L2A. Five rounds per cell. 60 sessions per congestion control, about 5 hours of video. Do not run CUBIC and BBR at the same time. Do not write into the old `emulation-capacity-*-4mbit` folders (those are the 3 s-only decision cells).
+
+```bash
+cd ~/mmsys24-starlink-livestreaming
+chmod +x experiments/run-capacity-4mbit-targets.sh
+./experiments/run-capacity-4mbit-targets.sh cubic
+# after it finishes:
+./experiments/run-capacity-4mbit-targets.sh bbr
+```
+
+Figures: `figures/emulation-capacity-4mbit-targets-cubic/` and `figures/emulation-capacity-4mbit-targets-bbr/`. Expect 60 `playback_latency.json` files each.
