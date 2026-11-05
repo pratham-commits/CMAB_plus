@@ -85,3 +85,17 @@ chmod +x experiments/run-capacity-4mbit-targets.sh
 ```
 
 Figures: `figures/emulation-capacity-4mbit-targets-cubic/` and `figures/emulation-capacity-4mbit-targets-bbr/`. Expect 60 `playback_latency.json` files each.
+
+## GCP — trace validity, targets 3/4/5/6 s
+
+Real Starlink ISL trace (`SHAPER=trace`, `runner/trace/isl-trace.csv` via `tc-trace.py`). Old CMAB, CMAB+, L2A in one batch. Five rounds per cell. 60 sessions per congestion control, about 5 hours of video. Do not run CUBIC and BBR at the same time. Do not reuse an older misconfigured trace folder as the old-CMAB baseline.
+
+```bash
+cd ~/mmsys24-starlink-livestreaming
+chmod +x experiments/run-trace-targets.sh
+./experiments/run-trace-targets.sh cubic
+# after it finishes:
+./experiments/run-trace-targets.sh bbr
+```
+
+Figures: `figures/emulation-trace-targets-cubic/` and `figures/emulation-trace-targets-bbr/`. Expect 60 `playback_latency.json` files each. The script refuses to start unless nginx is `SHAPER=trace` with an HTB qdisc (not clock/tbf) and logs `trace loaded:`.

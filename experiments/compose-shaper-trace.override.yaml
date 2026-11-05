@@ -1,0 +1,6 @@
+# Real Starlink ISL trace (isl-trace.csv via tc-trace.py).
+# Do not combine with compose-shaper-clock.override.yaml.
+services:
+  nginx:
+    environment:
+      SHAPER: "trace"
