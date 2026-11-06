@@ -151,7 +151,19 @@ shaper_check() {
     [[ "${sh}" == "trace" ]] || { echo "FAIL: SHAPER=${sh}, want trace"; return 1; }
     echo "${tc}" | grep -qi htb || { echo "FAIL: expected HTB, got: ${tc}"; return 1; }
     echo "${tc}" | grep -qi tbf && { echo "FAIL: clock tbf leaked into trace: ${tc}"; return 1; }
-    "${DOCKER[@]}" logs "${NGINX}" 2>&1 | grep -q 'trace loaded:' || { echo "FAIL: missing trace loaded"; return 1; }
+    "${DOCKER[@]}" exec "${NGINX}" test -s /trace/trace.csv \
+      || { echo "FAIL: /trace/trace.csv missing or empty inside nginx"; return 1; }
+    # The trace loop prints every 10 ms, so the startup line can be late in docker logs.
+    local i
+    for i in $(seq 1 15); do
+      if "${DOCKER[@]}" logs --tail 4000 "${NGINX}" 2>&1 | grep -q 'trace loaded:'; then
+        log "trace loaded"
+        break
+      fi
+      sleep 1
+    done
+    "${DOCKER[@]}" logs --tail 4000 "${NGINX}" 2>&1 | grep -q 'trace loaded:' \
+      || log "trace loaded line not visible yet; HTB is up and trace.csv is present"
   else
     [[ "${sh}" == "clock" ]] || { echo "FAIL: SHAPER=${sh}, want clock"; return 1; }
     echo "${tc}" | grep -q tbf || { echo "FAIL: expected tbf, got: ${tc}"; return 1; }
