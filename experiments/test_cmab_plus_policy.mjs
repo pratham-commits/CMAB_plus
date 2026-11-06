@@ -120,6 +120,12 @@ assert.equal(applyStallGuard(3, ladder, Number.NaN, true, 4).arm, 3);
 assert.equal(worstRecentThroughput([5000, 180, 4000]), 180);
 assert.equal(Number.isNaN(worstRecentThroughput([])), true);
 assert.equal(applyStallGuard(4, ladder, worstRecentThroughput([5000, 180, 4000]), true, 4).arm, 0);
+// One rung under the worst feasible arm. 1500 kbps fits index 2 (1000), so the cap is index 1 (500).
+assert.equal(applyStallGuard(5, ladder, 1500, true, 5).arm, 1);
+// Already at arm 0: the spare rung does not go below the ladder.
+assert.equal(applyStallGuard(4, ladder, 100, true, 4).arm, 0);
+// Healthy buffer: the spare rung is not applied.
+assert.equal(applyStallGuard(5, ladder, 1500, false, 5).arm, 5);
 assert.equal(STALL_RECOVER_DECISIONS >= 12, true);
 // Leave only after several healthy buffers. A dip in between resets the streak.
 {

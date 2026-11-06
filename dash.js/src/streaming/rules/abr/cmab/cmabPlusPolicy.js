@@ -11,7 +11,7 @@
  *   - an upward switch that was cut down to safe throughput uses DEFAULT
  *     priority. A downward switch stays STRONG, including when the buffer is thin
  *   - a stall guard, separate from latency: when the playback buffer is empty,
- *     cap at the worst of the recent segment throughputs and do not climb until
+ *     cap one rung below the worst recent segment throughput and do not climb until
  *     the buffer has stayed healthy for a long run of decisions. A healthy buffer
  *     leaves this guard off, so the paper clock and a flat 4 Mbit link keep the
  *     throughput clamp.
@@ -245,8 +245,10 @@ export function worstRecentThroughput(samplesKbps) {
 }
 
 /**
- * While the guard is on, cap at the worst recent throughput and do not climb
- * above the quality already playing. A missing sample does not force arm 0.
+ * While the guard is on, cap one rung below the worst recent throughput and do
+ * not climb above the quality already playing. Arm 0 stays arm 0. A missing
+ * sample does not force arm 0. The guard is off when the buffer is healthy, so
+ * this spare rung does not apply on the paper clock or a flat 4 Mbit link.
  *
  * @param {number} arm
  * @param {Array<{bandwidth: number}>} bitrateList
@@ -264,7 +266,8 @@ export function applyStallGuard(arm, bitrateList, worstThroughputKbps, guardActi
     let capped = chosen;
     const worst = Number(worstThroughputKbps);
     if (Number.isFinite(worst)) {
-        capped = Math.min(capped, maxFeasibleArm(bitrateList, worst));
+        const feasible = maxFeasibleArm(bitrateList, worst);
+        capped = Math.min(capped, Math.max(0, feasible - 1));
     }
     const quality = Number(currentQuality);
     if (Number.isFinite(quality) && quality >= 0) {
