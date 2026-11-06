@@ -235,6 +235,14 @@ function ThroughputHistory(config) {
         return getAverage(true, mediaType, isDynamic);
     }
 
+    function getLastThroughput(mediaType) {
+        const arr = throughputDict[mediaType];
+        if (!arr || arr.length === 0) {
+            return NaN;
+        }
+        return arr[arr.length - 1];
+    }
+
     function getSafeAverageThroughput(mediaType, isDynamic) {
         let average = getAverageThroughput(mediaType, isDynamic);
         if (!isNaN(average)) {
@@ -276,6 +284,7 @@ function ThroughputHistory(config) {
     const instance = {
         push,
         getAverageThroughput,
+        getLastThroughput,
         getSafeAverageThroughput,
         getAverageLatency,
         reset

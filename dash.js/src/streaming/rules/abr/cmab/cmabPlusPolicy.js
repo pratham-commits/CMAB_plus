@@ -10,11 +10,21 @@
  *     highest feasible rung. Being a little over the latency target is not a cut
  *   - an upward switch that was cut down to safe throughput uses DEFAULT
  *     priority. A downward switch stays STRONG, including when the buffer is thin
+ *   - a stall guard, separate from latency: when the playback buffer is empty,
+ *     cap at the latest segment throughput and do not climb until the buffer has
+ *     stayed healthy for several decisions. A healthy buffer leaves this guard off,
+ *     so the paper clock and a flat 4 Mbit link keep the throughput clamp.
  *
  * Throughput unit: kbps, same as dash.js getSafeAverageThroughput / bitrateList.bandwidth/1000.
  */
 
 export const BUFFER_FLOOR_SEC = 0.5;
+
+// Same threshold as the reported rebuffer ratio. Startup (quality still -1) does not count.
+export const STALL_BUFFER_SEC = 0.05;
+// Leave the guard only after the buffer has stayed at or above this level.
+export const STALL_RECOVER_BUFFER_SEC = 1.0;
+export const STALL_RECOVER_DECISIONS = 3;
 
 // A healthy player sits a little above the target (L2A ~3.1 s at a 3 s target).
 // Stepping down for any latency above the target walks the ladder to the bottom and stays there.
@@ -162,6 +172,77 @@ export function applyLatencyStep(arm, currentQuality, armCount, aboveThroughput)
  * @param {number} currentQuality
  * @returns {{priority: number, reason: string}}
  */
+export function createStallGuardState() {
+    return { active: false, healthyDecisions: 0 };
+}
+
+/**
+ * Enter when a real quality is playing and the buffer is at or below STALL_BUFFER_SEC.
+ * Leave only after STALL_RECOVER_DECISIONS decisions with buffer >= STALL_RECOVER_BUFFER_SEC.
+ * Latency is not an input. An unknown buffer does not change the guard.
+ *
+ * @param {{active: boolean, healthyDecisions: number}} state
+ * @param {number} bufferLevelSec
+ * @param {number} currentQuality
+ * @returns {{active: boolean, healthyDecisions: number}}
+ */
+export function updateStallGuard(state, bufferLevelSec, currentQuality) {
+    const next = {
+        active: !!(state && state.active),
+        healthyDecisions: state && Number.isFinite(state.healthyDecisions) ? state.healthyDecisions : 0,
+    };
+    const buffer = Number(bufferLevelSec);
+    if (!Number.isFinite(buffer)) {
+        return next;
+    }
+    const quality = Number(currentQuality);
+    const playing = Number.isFinite(quality) && quality >= 0;
+    if (playing && buffer <= STALL_BUFFER_SEC) {
+        return { active: true, healthyDecisions: 0 };
+    }
+    if (!next.active) {
+        return next;
+    }
+    if (buffer >= STALL_RECOVER_BUFFER_SEC) {
+        next.healthyDecisions += 1;
+        if (next.healthyDecisions >= STALL_RECOVER_DECISIONS) {
+            return { active: false, healthyDecisions: 0 };
+        }
+        return next;
+    }
+    next.healthyDecisions = 0;
+    return next;
+}
+
+/**
+ * While the guard is on, cap at the latest segment throughput and do not climb
+ * above the quality already playing. A missing latest sample does not force arm 0.
+ *
+ * @param {number} arm
+ * @param {Array<{bandwidth: number}>} bitrateList
+ * @param {number} latestThroughputKbps
+ * @param {boolean} guardActive
+ * @param {number} currentQuality
+ * @returns {{arm: number, stalled: boolean, dropped: boolean}}
+ */
+export function applyStallGuard(arm, bitrateList, latestThroughputKbps, guardActive, currentQuality) {
+    const armCount = bitrateList ? bitrateList.length : 0;
+    const chosen = clampIndex(arm, armCount);
+    if (!guardActive) {
+        return { arm: chosen, stalled: false, dropped: false };
+    }
+    let capped = chosen;
+    const latest = Number(latestThroughputKbps);
+    if (Number.isFinite(latest)) {
+        capped = Math.min(capped, maxFeasibleArm(bitrateList, latest));
+    }
+    const quality = Number(currentQuality);
+    if (Number.isFinite(quality) && quality >= 0) {
+        capped = Math.min(capped, clampIndex(quality, armCount));
+    }
+    return { arm: capped, stalled: true, dropped: capped !== chosen };
+}
+
 export function chooseSwitchPriority(hardened, clamped, priority, nextQuality, currentQuality) {
     const upward = Number.isFinite(Number(nextQuality))
         && Number.isFinite(Number(currentQuality))

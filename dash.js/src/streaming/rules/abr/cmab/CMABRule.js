@@ -138,6 +138,10 @@ function CMABRule(config) {
             const playbackRate = playbackController.getPlaybackRate();
             const throughputHistory = abrController.getThroughputHistory();
             const throughput = throughputHistory.getSafeAverageThroughput(mediaType, isDynamic);
+            const latestRaw = throughputHistory.getLastThroughput(mediaType);
+            const safety = player_settings.get().streaming.abr.bandwidthSafetyFactor;
+            const latestThroughput = Number.isFinite(latestRaw) ? latestRaw * safety : latestRaw;
+            const bufferLevel = dashMetrics.getCurrentBufferLevel(mediaType, true);
             let currentLiveLatency = playbackController.getCurrentLiveLatency();
             let latencyTarget = playbackController.getLiveDelay();
             const mediaInfo = rulesContext.getMediaInfo();
@@ -194,7 +198,9 @@ function CMABRule(config) {
                 throughput,
                 rebufferingEvents,
                 cmabAlpha,
-                hardened);
+                hardened,
+                bufferLevel,
+                latestThroughput);
             switchRequest.quality = decision.quality;
             const priorityChoice = chooseSwitchPriority(
                 hardened,

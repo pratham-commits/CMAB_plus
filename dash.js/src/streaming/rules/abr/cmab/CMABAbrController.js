@@ -35,7 +35,7 @@
  */
 
 import FactoryMaker from '../../../../core/FactoryMaker';
-import { applyFeasibilityClamp, applyLatencyStep, chooseSuggestedArm, isCurrentAboveThroughput, isLatencyLate, maxFeasibleArm, shouldForceMaxArm, shouldProbeFeasibleArm } from './cmabPlusPolicy.js';
+import { applyFeasibilityClamp, applyLatencyStep, applyStallGuard, chooseSuggestedArm, createStallGuardState, isCurrentAboveThroughput, isLatencyLate, maxFeasibleArm, shouldForceMaxArm, shouldProbeFeasibleArm, updateStallGuard } from './cmabPlusPolicy.js';
 
 const statServerUrl = 'http://stat-server:8000';
 
@@ -179,6 +179,7 @@ function CMABAbrController() {
     let _bitrateArray = [];
 
     let _throughputDict = new Map();
+    let _stallGuard = createStallGuardState();
 
     let rounds = 0;
 
@@ -363,7 +364,7 @@ function CMABAbrController() {
 
     function getCMABNextQuality(pyodide, context, bitrateList, cmabArms, currentQualityLevel,
         currentBitrateKbps, maxBitrateKbps, currentLiveLatency, playbackRate, throughput,
-        rebufferingEvents, cmabAlpha, hardened) {
+        rebufferingEvents, cmabAlpha, hardened, bufferLevelSec, latestThroughputKbps) {
         let tic = new Date();
         // Incoming throughput is already kbps and already × bandwidthSafetyFactor.
         const throughputKbps = throughput;
@@ -439,10 +440,23 @@ function CMABAbrController() {
         );
         selectedArm = clampedDecision.arm;
         let steppedDown = false;
+        let stallActive = false;
+        let stallDropped = false;
         if (hardened) {
             const stepped = applyLatencyStep(selectedArm, currentQualityLevel, cmabArms.length, aboveThroughput);
             selectedArm = stepped.arm;
             steppedDown = stepped.steppedDown;
+            _stallGuard = updateStallGuard(_stallGuard, bufferLevelSec, currentQualityLevel);
+            const guarded = applyStallGuard(
+                selectedArm,
+                bitrateList,
+                latestThroughputKbps,
+                _stallGuard.active,
+                currentQualityLevel
+            );
+            selectedArm = guarded.arm;
+            stallActive = guarded.stalled;
+            stallDropped = guarded.dropped;
             console.log(
                 'CMAB+ suggested', suggestedArm,
                 'maxFeasible', clampedDecision.maxFeasible,
@@ -451,8 +465,14 @@ function CMABAbrController() {
                 'steppedDown', steppedDown,
                 'aboveThroughput', aboveThroughput,
                 'latencyLate', latencyLate,
+                'stall', stallActive,
+                'stallDropped', stallDropped,
+                'bufferSec', bufferLevelSec,
+                'latestThroughputKbps', latestThroughputKbps,
                 'throughputKbps', throughputKbps
             );
+        } else {
+            _stallGuard = createStallGuardState();
         }
 
         _selectedArmsArray.push(selectedArm);
@@ -472,6 +492,10 @@ function CMABAbrController() {
             suggested_arm: suggestedArm,
             clamped: clampedDecision.clamped,
             stepped_down: steppedDown,
+            stall: stallActive,
+            stall_dropped: stallDropped,
+            buffer_sec: bufferLevelSec,
+            latest_throughput_kbps: latestThroughputKbps,
             above_throughput: aboveThroughput,
             latency_late: latencyLate,
             cmab_plus: !!hardened,
@@ -490,6 +514,7 @@ function CMABAbrController() {
             suggestedArm: suggestedArm,
             clamped: clampedDecision.clamped,
             steppedDown: steppedDown,
+            stall: stallActive,
             aboveThroughput: aboveThroughput,
             latencyLate: latencyLate,
             hardened: !!hardened,

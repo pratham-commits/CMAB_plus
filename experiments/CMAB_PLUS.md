@@ -99,3 +99,19 @@ chmod +x experiments/run-trace-targets.sh
 ```
 
 Figures: `figures/emulation-trace-targets-cubic/` and `figures/emulation-trace-targets-bbr/`. Expect 60 `playback_latency.json` files each. The script refuses to start unless nginx is `SHAPER=trace` with an HTB qdisc (not clock/tbf) and logs `trace loaded:`.
+
+## GCP — stall-guard spot, 3 s only
+
+Fifteen sessions (old CMAB, CMAB+, L2A, five rounds). Run the healthy cases before the trace. Reject the rule if clock or 4 Mbit CMAB+ bitrate falls to a few hundred kbps.
+
+```bash
+cd ~/mmsys24-starlink-livestreaming
+chmod +x experiments/run-stall-guard-spot.sh
+./experiments/run-stall-guard-spot.sh clock cubic
+./experiments/run-stall-guard-spot.sh clock bbr
+./experiments/run-stall-guard-spot.sh 4mbit cubic
+./experiments/run-stall-guard-spot.sh 4mbit bbr
+./experiments/run-stall-guard-spot.sh trace cubic
+```
+
+Figures: `figures/emulation-stall-spot-<mode>-<cc>/`. Expect 15 `playback_latency.json` files.
