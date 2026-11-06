@@ -11,9 +11,10 @@
  *   - an upward switch that was cut down to safe throughput uses DEFAULT
  *     priority. A downward switch stays STRONG, including when the buffer is thin
  *   - a stall guard, separate from latency: when the playback buffer is empty,
- *     hold the bottom rung and do not climb until the buffer has stayed healthy
- *     for a long run of decisions. A healthy buffer leaves this guard off, so the
- *     paper clock and a flat 4 Mbit link keep the throughput clamp.
+ *     cap at the worst of the recent segment throughputs and do not climb until
+ *     the buffer has stayed healthy for a long run of decisions. A healthy buffer
+ *     leaves this guard off, so the paper clock and a flat 4 Mbit link keep the
+ *     throughput clamp.
  *
  * Throughput unit: kbps, same as dash.js getSafeAverageThroughput / bitrateList.bandwidth/1000.
  */
@@ -244,10 +245,8 @@ export function worstRecentThroughput(samplesKbps) {
 }
 
 /**
- * While the guard is on, hold arm 0. The worst-throughput number is ignored:
- * a stall means the smoothed estimate was already too high. The guard is off
- * when the buffer is healthy, so this does not apply on the paper clock or a
- * flat 4 Mbit link.
+ * While the guard is on, cap at the worst recent throughput and do not climb
+ * above the quality already playing. A missing sample does not force arm 0.
  *
  * @param {number} arm
  * @param {Array<{bandwidth: number}>} bitrateList
@@ -262,7 +261,16 @@ export function applyStallGuard(arm, bitrateList, worstThroughputKbps, guardActi
     if (!guardActive) {
         return { arm: chosen, stalled: false, dropped: false };
     }
-    return { arm: 0, stalled: true, dropped: chosen !== 0 };
+    let capped = chosen;
+    const worst = Number(worstThroughputKbps);
+    if (Number.isFinite(worst)) {
+        capped = Math.min(capped, maxFeasibleArm(bitrateList, worst));
+    }
+    const quality = Number(currentQuality);
+    if (Number.isFinite(quality) && quality >= 0) {
+        capped = Math.min(capped, clampIndex(quality, armCount));
+    }
+    return { arm: capped, stalled: true, dropped: capped !== chosen };
 }
 
 export function chooseSwitchPriority(hardened, clamped, priority, nextQuality, currentQuality) {
