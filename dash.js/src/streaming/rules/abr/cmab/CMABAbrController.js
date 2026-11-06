@@ -364,7 +364,7 @@ function CMABAbrController() {
 
     function getCMABNextQuality(pyodide, context, bitrateList, cmabArms, currentQualityLevel,
         currentBitrateKbps, maxBitrateKbps, currentLiveLatency, playbackRate, throughput,
-        rebufferingEvents, cmabAlpha, hardened, bufferLevelSec, latestThroughputKbps) {
+        rebufferingEvents, cmabAlpha, hardened, bufferLevelSec, worstThroughputKbps) {
         let tic = new Date();
         // Incoming throughput is already kbps and already × bandwidthSafetyFactor.
         const throughputKbps = throughput;
@@ -450,7 +450,7 @@ function CMABAbrController() {
             const guarded = applyStallGuard(
                 selectedArm,
                 bitrateList,
-                latestThroughputKbps,
+                worstThroughputKbps,
                 _stallGuard.active,
                 currentQualityLevel
             );
@@ -468,7 +468,7 @@ function CMABAbrController() {
                 'stall', stallActive,
                 'stallDropped', stallDropped,
                 'bufferSec', bufferLevelSec,
-                'latestThroughputKbps', latestThroughputKbps,
+                'worstThroughputKbps', worstThroughputKbps,
                 'throughputKbps', throughputKbps
             );
         } else {
@@ -495,7 +495,7 @@ function CMABAbrController() {
             stall: stallActive,
             stall_dropped: stallDropped,
             buffer_sec: bufferLevelSec,
-            latest_throughput_kbps: latestThroughputKbps,
+            worst_throughput_kbps: worstThroughputKbps,
             above_throughput: aboveThroughput,
             latency_late: latencyLate,
             cmab_plus: !!hardened,

@@ -11,9 +11,10 @@
  *   - an upward switch that was cut down to safe throughput uses DEFAULT
  *     priority. A downward switch stays STRONG, including when the buffer is thin
  *   - a stall guard, separate from latency: when the playback buffer is empty,
- *     cap at the latest segment throughput and do not climb until the buffer has
- *     stayed healthy for several decisions. A healthy buffer leaves this guard off,
- *     so the paper clock and a flat 4 Mbit link keep the throughput clamp.
+ *     cap at the worst of the recent segment throughputs and do not climb until
+ *     the buffer has stayed healthy for a long run of decisions. A healthy buffer
+ *     leaves this guard off, so the paper clock and a flat 4 Mbit link keep the
+ *     throughput clamp.
  *
  * Throughput unit: kbps, same as dash.js getSafeAverageThroughput / bitrateList.bandwidth/1000.
  */
@@ -22,9 +23,13 @@ export const BUFFER_FLOOR_SEC = 0.5;
 
 // Same threshold as the reported rebuffer ratio. Startup (quality still -1) does not count.
 export const STALL_BUFFER_SEC = 0.05;
-// Leave the guard only after the buffer has stayed at or above this level.
+// Leave the guard only after the buffer has stayed at or above this level
+// for a long stretch. Three decisions was enough to climb back between
+// Starlink loss spikes.
 export const STALL_RECOVER_BUFFER_SEC = 1.0;
-export const STALL_RECOVER_DECISIONS = 3;
+export const STALL_RECOVER_DECISIONS = 12;
+// Cap uses the worst sample in this window, not the single latest download.
+export const STALL_WORST_WINDOW = 8;
 
 // A healthy player sits a little above the target (L2A ~3.1 s at a 3 s target).
 // Stepping down for any latency above the target walks the ladder to the bottom and stays there.
@@ -215,26 +220,51 @@ export function updateStallGuard(state, bufferLevelSec, currentQuality) {
 }
 
 /**
- * While the guard is on, cap at the latest segment throughput and do not climb
- * above the quality already playing. A missing latest sample does not force arm 0.
+ * Lowest finite sample. An empty list is missing data, not zero throughput.
+ *
+ * @param {Array<number>} samplesKbps
+ * @returns {number}
+ */
+export function worstRecentThroughput(samplesKbps) {
+    if (!samplesKbps || samplesKbps.length === 0) {
+        return Number.NaN;
+    }
+    let worst = Number.POSITIVE_INFINITY;
+    let found = false;
+    for (let i = 0; i < samplesKbps.length; i++) {
+        const sample = Number(samplesKbps[i]);
+        if (!Number.isFinite(sample)) {
+            continue;
+        }
+        found = true;
+        if (sample < worst) {
+            worst = sample;
+        }
+    }
+    return found ? worst : Number.NaN;
+}
+
+/**
+ * While the guard is on, cap at the worst recent throughput and do not climb
+ * above the quality already playing. A missing sample does not force arm 0.
  *
  * @param {number} arm
  * @param {Array<{bandwidth: number}>} bitrateList
- * @param {number} latestThroughputKbps
+ * @param {number} worstThroughputKbps
  * @param {boolean} guardActive
  * @param {number} currentQuality
  * @returns {{arm: number, stalled: boolean, dropped: boolean}}
  */
-export function applyStallGuard(arm, bitrateList, latestThroughputKbps, guardActive, currentQuality) {
+export function applyStallGuard(arm, bitrateList, worstThroughputKbps, guardActive, currentQuality) {
     const armCount = bitrateList ? bitrateList.length : 0;
     const chosen = clampIndex(arm, armCount);
     if (!guardActive) {
         return { arm: chosen, stalled: false, dropped: false };
     }
     let capped = chosen;
-    const latest = Number(latestThroughputKbps);
-    if (Number.isFinite(latest)) {
-        capped = Math.min(capped, maxFeasibleArm(bitrateList, latest));
+    const worst = Number(worstThroughputKbps);
+    if (Number.isFinite(worst)) {
+        capped = Math.min(capped, maxFeasibleArm(bitrateList, worst));
     }
     const quality = Number(currentQuality);
     if (Number.isFinite(quality) && quality >= 0) {

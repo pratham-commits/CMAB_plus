@@ -235,6 +235,18 @@ function ThroughputHistory(config) {
         return getAverage(true, mediaType, isDynamic);
     }
 
+    function getRecentThroughputs(mediaType, count) {
+        const arr = throughputDict[mediaType];
+        if (!arr || arr.length === 0) {
+            return [];
+        }
+        const n = Number(count);
+        if (!Number.isFinite(n) || n <= 0) {
+            return arr.slice();
+        }
+        return arr.slice(-Math.floor(n));
+    }
+
     function getLastThroughput(mediaType) {
         const arr = throughputDict[mediaType];
         if (!arr || arr.length === 0) {
@@ -285,6 +297,7 @@ function ThroughputHistory(config) {
         push,
         getAverageThroughput,
         getLastThroughput,
+        getRecentThroughputs,
         getSafeAverageThroughput,
         getAverageLatency,
         reset

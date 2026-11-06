@@ -41,7 +41,7 @@ import CMABAbrController from './CMABAbrController';
 import MediaPlayerEvents from '../../../MediaPlayerEvents';
 import EventBus from '../../../../core/EventBus';
 import Settings from '../../../../core/Settings';
-import { chooseSwitchPriority } from './cmabPlusPolicy.js';
+import { chooseSwitchPriority, STALL_WORST_WINDOW, worstRecentThroughput } from './cmabPlusPolicy.js';
 
 const { loadPyodide } = require('pyodide');
 
@@ -138,9 +138,10 @@ function CMABRule(config) {
             const playbackRate = playbackController.getPlaybackRate();
             const throughputHistory = abrController.getThroughputHistory();
             const throughput = throughputHistory.getSafeAverageThroughput(mediaType, isDynamic);
-            const latestRaw = throughputHistory.getLastThroughput(mediaType);
             const safety = player_settings.get().streaming.abr.bandwidthSafetyFactor;
-            const latestThroughput = Number.isFinite(latestRaw) ? latestRaw * safety : latestRaw;
+            const recentRaw = throughputHistory.getRecentThroughputs(mediaType, STALL_WORST_WINDOW);
+            const worstRaw = worstRecentThroughput(recentRaw);
+            const worstThroughput = Number.isFinite(worstRaw) ? worstRaw * safety : worstRaw;
             const bufferLevel = dashMetrics.getCurrentBufferLevel(mediaType, true);
             let currentLiveLatency = playbackController.getCurrentLiveLatency();
             let latencyTarget = playbackController.getLiveDelay();
@@ -200,7 +201,7 @@ function CMABRule(config) {
                 cmabAlpha,
                 hardened,
                 bufferLevel,
-                latestThroughput);
+                worstThroughput);
             switchRequest.quality = decision.quality;
             const priorityChoice = chooseSwitchPriority(
                 hardened,

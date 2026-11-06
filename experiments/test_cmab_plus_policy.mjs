@@ -13,6 +13,7 @@ import {
     shouldProbeFeasibleArm,
     STALL_RECOVER_DECISIONS,
     updateStallGuard,
+    worstRecentThroughput,
 } from '../dash.js/src/streaming/rules/abr/cmab/cmabPlusPolicy.js';
 
 const ladder = [200, 500, 1000, 2000, 4000, 6000].map((kbps) => ({ bandwidth: kbps * 1000 }));
@@ -113,8 +114,13 @@ assert.equal(chooseSwitchPriority(false, true, priority, 4, 2).priority, STRONG)
     const held = applyStallGuard(4, ladder, 5000, true, 2);
     assert.equal(held.arm, 2);
 }
-// A missing latest sample does not force the bottom rung.
+// A missing sample does not force the bottom rung.
 assert.equal(applyStallGuard(3, ladder, Number.NaN, true, 4).arm, 3);
+// The cap uses the worst sample in the window, not the latest high one.
+assert.equal(worstRecentThroughput([5000, 180, 4000]), 180);
+assert.equal(Number.isNaN(worstRecentThroughput([])), true);
+assert.equal(applyStallGuard(4, ladder, worstRecentThroughput([5000, 180, 4000]), true, 4).arm, 0);
+assert.equal(STALL_RECOVER_DECISIONS >= 12, true);
 // Leave only after several healthy buffers. A dip in between resets the streak.
 {
     let state = updateStallGuard(createStallGuardState(), 0.0, 3);
