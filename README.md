@@ -1,14 +1,58 @@
-# MMSys'24 Artifact "Low-Latency Live Video Streaming over a Low-Earth-Orbit Satellite Network with DASH"
+# CMAB+ on MMSys'24 Starlink live streaming
+
+This repository is the **CMAB_plus** working tree: the MMSys'24 LEO live-streaming
+artifact **plus** our CMAB+ player changes and the Review I–III evaluation package.
+
+**Upstream paper:** [*Low-Latency Live Video Streaming over a Low-Earth-Orbit Satellite Network with DASH*](https://dl.acm.org/doi/10.1145/3625468.3647616) (ACM MMSys'24).  
+**Our fork remote:** [pratham-commits/CMAB_plus](https://github.com/pratham-commits/CMAB_plus)
+
+### What we added (read this first)
+
+| Path | Contents |
+| --- | --- |
+| `dash.js/.../cmab/` | CMAB+ rules (feasible probe, clamp, throughput step-down, stall guard) |
+| `experiments/CMAB_PLUS.md` | How to run clock / capacity / TRACE / stall-guard spots on GCP |
+| `review-2/` | Review II — BBR extension, TRACE confound, fair `SHAPER=clock` results |
+| `review-3/` | Review III — CMAB+ claims, trials, figures, TRACE stall-guard rematrix |
+| `review-3/PROBLEMS.md` | Failure ledger across Reviews I–III |
+| `review-3/demo-ui/` | Interactive demo (phases, Algorithm tab, Problems tab) |
+| `review-ii-bbr-extension/` | Extra BBR validation docs/scripts |
+
+**Demo UI**
+
+```bash
+cd review-3/demo-ui
+npm install
+# optional cricket ladder (~1 GB): bash scripts/fetch-video.sh
+npm run catalog
+npm run dev
+```
+
+Open the **Algorithm** and **Problems we faced** tabs alongside Phases 1–3.
+
+**Regenerate Review III figures** (from archived session trees kept locally under `review-3/data/`):
+
+```bash
+python3 review-3/analyze_capacity.py
+python3 review-3/analyze_clock_nonreg.py
+python3 review-3/analyze_capacity_4mbit_targets.py
+python3 review-3/analyze_trace_targets.py
+```
+
+Raw multi‑GB session dumps are gitignored; see `review-3/DATA_MANIFEST.md`.
+
+---
+
+# Upstream MMSys'24 artifact notes
 
 ![Build](https://github.com/clarkzjw/mmsys24-starlink-livestreaming/actions/workflows/build.yaml/badge.svg) [![](https://img.shields.io/badge/MMSys'24-Paper-blue)](https://dl.acm.org/doi/10.1145/3625468.3647616)
 
-This repository contains the implementation and artifacts for the paper ***[Low-Latency Live Video Streaming over a Low-Earth-Orbit Satellite Network with DASH](https://dl.acm.org/doi/10.1145/3625468.3647616)*** published in ACM MMSys'24.
-
-**We received the [DASH-IF Excellence in DASH Award Third Place](https://dashif.org/news/mmsys2024/) at MMSys'24**
+The sections below document the original artifact. **We received the [DASH-IF Excellence in DASH Award Third Place](https://dashif.org/news/mmsys2024/) at MMSys'24** (upstream authors).
 
 Table of Contents
 =================
 
+  * [What we added (read this first)](#what-we-added-read-this-first)
   * [Repository structure](#repository-structure)
   * [Prerequisites](#prerequisites)
   * [Re-generate paper results](#re-generate-paper-results)
@@ -21,7 +65,7 @@ Table of Contents
 
 ```
 ├── assets                          # figures for README.md
-├── dash.js                         # git submodule for the modified dash.js player
+├── dash.js                         # modified dash.js (includes CMAB+)
 ├── docker-compose-emulation.yaml   # docker compose file for network emulation
 ├── docker-compose-server.yaml      # docker compose file for the media server in real world experiments
 ├── docker-compose.yaml             # docker compose file for the streaming client in real world experiments
@@ -31,9 +75,12 @@ Table of Contents
 ├── Dockerfile-nginx-emulation      # Dockerfile to build nginx with traffic shaper in network emulation
 ├── Dockerfile-runner               # Dockerfile to build experiment runner
 ├── etc                             # nginx config files
-├── experiments                     # experiment config files
+├── experiments                     # experiment config files (+ CMAB_PLUS.md)
 ├── livesim2                        # git submodule for livesim2
 ├── paper-data                      # git submodule for the data used to generate figures in the paper
+├── review-2/                       # Review II BBR package
+├── review-3/                       # Review III CMAB+ package + demo-ui
+├── review-ii-bbr-extension/        # BBR validation docs/scripts
 ├── poetry.lock
 ├── pyproject.toml
 ├── README.md
