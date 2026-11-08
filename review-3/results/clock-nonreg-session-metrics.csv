@@ -1,0 +1,121 @@
+transport,target_s,algorithm,round,duration_s,latency_s,rebuffer_pct,bitrate_kbps,session
+CUBIC,3,old CMAB,0,300,4.263841502519469,0.0,5265.349264705882,abrCMAB-1104-0225-target-latency-3s-duration-300-bitrate-variable-0
+CUBIC,3,old CMAB,1,300,4.12315337995338,0.0,5402.501168770454,abrCMAB-1104-0225-target-latency-3s-duration-300-bitrate-variable-1
+CUBIC,3,old CMAB,2,300,3.904393309222423,0.0,5326.223934723482,abrCMAB-1104-0225-target-latency-3s-duration-300-bitrate-variable-2
+CUBIC,3,old CMAB,3,300,4.0795476728422955,0.0,5405.932971014493,abrCMAB-1104-0225-target-latency-3s-duration-300-bitrate-variable-3
+CUBIC,3,old CMAB,4,300,4.082747237569061,0.0,5415.650969529086,abrCMAB-1104-0225-target-latency-3s-duration-300-bitrate-variable-4
+CUBIC,3,CMAB+,0,300,4.262445152480655,0.0,5433.257299270073,abrCMABPlus-1104-0225-target-latency-3s-duration-300-bitrate-variable-0
+CUBIC,3,CMAB+,1,300,4.613095130748422,0.0,5472.649186256781,abrCMABPlus-1104-0225-target-latency-3s-duration-300-bitrate-variable-1
+CUBIC,3,CMAB+,2,300,4.151558836892321,0.0,5474.36247723133,abrCMABPlus-1104-0225-target-latency-3s-duration-300-bitrate-variable-2
+CUBIC,3,CMAB+,3,300,4.151460108794198,0.0,5332.409090909091,abrCMABPlus-1104-0225-target-latency-3s-duration-300-bitrate-variable-3
+CUBIC,3,CMAB+,4,300,4.003966803092315,0.0,5386.587591240876,abrCMABPlus-1104-0225-target-latency-3s-duration-300-bitrate-variable-4
+CUBIC,3,L2A,0,300,3.957631666666667,0.0,6000.0,abrL2A-1104-0225-target-latency-3s-duration-300-bitrate-variable-0
+CUBIC,3,L2A,1,300,4.258787083333333,0.0,6000.0,abrL2A-1104-0225-target-latency-3s-duration-300-bitrate-variable-1
+CUBIC,3,L2A,2,300,3.9491191170345687,0.0,6000.0,abrL2A-1104-0225-target-latency-3s-duration-300-bitrate-variable-2
+CUBIC,3,L2A,3,300,3.9325966666666665,0.0,6000.0,abrL2A-1104-0225-target-latency-3s-duration-300-bitrate-variable-3
+CUBIC,3,L2A,4,300,4.004416666666667,0.0,6000.0,abrL2A-1104-0225-target-latency-3s-duration-300-bitrate-variable-4
+CUBIC,4,old CMAB,0,300,4.5419596920289855,0.0,5264.418710263397,abrCMAB-1104-0225-target-latency-4s-duration-300-bitrate-variable-0
+CUBIC,4,old CMAB,1,300,4.4792219178082195,0.0,5343.70709382151,abrCMAB-1104-0225-target-latency-4s-duration-300-bitrate-variable-1
+CUBIC,4,old CMAB,2,300,4.632735034802784,0.0,5327.395348837209,abrCMAB-1104-0225-target-latency-4s-duration-300-bitrate-variable-2
+CUBIC,4,old CMAB,3,300,4.406101919561243,0.0,5216.636113657195,abrCMAB-1104-0225-target-latency-4s-duration-300-bitrate-variable-3
+CUBIC,4,old CMAB,4,300,4.556935423490875,0.0,5307.481238273921,abrCMAB-1104-0225-target-latency-4s-duration-300-bitrate-variable-4
+CUBIC,4,CMAB+,0,300,4.594851093531875,0.0,5412.231559290382,abrCMABPlus-1104-0225-target-latency-4s-duration-300-bitrate-variable-0
+CUBIC,4,CMAB+,1,300,4.449240295748614,0.0,5384.6082522021325,abrCMABPlus-1104-0225-target-latency-4s-duration-300-bitrate-variable-1
+CUBIC,4,CMAB+,2,300,4.420998620689655,0.0,5380.829493087557,abrCMABPlus-1104-0225-target-latency-4s-duration-300-bitrate-variable-2
+CUBIC,4,CMAB+,3,300,4.429196818181818,0.0,5508.713503649635,abrCMABPlus-1104-0225-target-latency-4s-duration-300-bitrate-variable-3
+CUBIC,4,CMAB+,4,300,4.809462768387392,0.0,5478.869047619048,abrCMABPlus-1104-0225-target-latency-4s-duration-300-bitrate-variable-4
+CUBIC,4,L2A,0,300,4.427182916666666,0.0,6000.0,abrL2A-1104-0225-target-latency-4s-duration-300-bitrate-variable-0
+CUBIC,4,L2A,1,300,4.433221666666666,0.0,6000.0,abrL2A-1104-0225-target-latency-4s-duration-300-bitrate-variable-1
+CUBIC,4,L2A,2,300,4.329623490212412,0.0,6000.0,abrL2A-1104-0225-target-latency-4s-duration-300-bitrate-variable-2
+CUBIC,4,L2A,3,300,4.284682800345721,0.0,6000.0,abrL2A-1104-0225-target-latency-4s-duration-300-bitrate-variable-3
+CUBIC,4,L2A,4,300,4.355364619377163,0.0,6000.0,abrL2A-1104-0225-target-latency-4s-duration-300-bitrate-variable-4
+CUBIC,5,old CMAB,0,300,5.422903454803596,0.0,5472.129981024668,abrCMAB-1104-0225-target-latency-5s-duration-300-bitrate-variable-0
+CUBIC,5,old CMAB,1,300,5.23323055683387,0.0,5443.816335948316,abrCMAB-1104-0225-target-latency-5s-duration-300-bitrate-variable-1
+CUBIC,5,old CMAB,2,300,5.219506493506493,0.0,5419.7441860465115,abrCMAB-1104-0225-target-latency-5s-duration-300-bitrate-variable-2
+CUBIC,5,old CMAB,3,300,5.340340751043115,0.0,5461.645746164575,abrCMAB-1104-0225-target-latency-5s-duration-300-bitrate-variable-3
+CUBIC,5,old CMAB,4,300,5.225574858757062,0.0,5350.188857412653,abrCMAB-1104-0225-target-latency-5s-duration-300-bitrate-variable-4
+CUBIC,5,CMAB+,0,300,5.213549643705464,0.0,5488.894184938036,abrCMABPlus-1104-0225-target-latency-5s-duration-300-bitrate-variable-0
+CUBIC,5,CMAB+,1,300,5.21021514312096,0.0,5433.503007866729,abrCMABPlus-1104-0225-target-latency-5s-duration-300-bitrate-variable-1
+CUBIC,5,CMAB+,2,300,5.291306488725264,0.0,5428.495616059068,abrCMABPlus-1104-0225-target-latency-5s-duration-300-bitrate-variable-2
+CUBIC,5,CMAB+,3,300,5.244041037735849,0.0,5408.285984848485,abrCMABPlus-1104-0225-target-latency-5s-duration-300-bitrate-variable-3
+CUBIC,5,CMAB+,4,300,5.225947687996263,0.0,5478.665105386417,abrCMABPlus-1104-0225-target-latency-5s-duration-300-bitrate-variable-4
+CUBIC,5,L2A,0,300,5.010803258145363,0.0,6000.0,abrL2A-1104-0225-target-latency-5s-duration-300-bitrate-variable-0
+CUBIC,5,L2A,1,300,5.001767976588629,0.0,6000.0,abrL2A-1104-0225-target-latency-5s-duration-300-bitrate-variable-1
+CUBIC,5,L2A,2,300,5.0717044601917465,0.0,6000.0,abrL2A-1104-0225-target-latency-5s-duration-300-bitrate-variable-2
+CUBIC,5,L2A,3,300,5.052932083333333,0.0,6000.0,abrL2A-1104-0225-target-latency-5s-duration-300-bitrate-variable-3
+CUBIC,5,L2A,4,300,5.023708333333333,0.0,6000.0,abrL2A-1104-0225-target-latency-5s-duration-300-bitrate-variable-4
+CUBIC,6,old CMAB,0,300,6.228559787849566,0.0,5348.355899419729,abrCMAB-1104-0225-target-latency-6s-duration-300-bitrate-variable-0
+CUBIC,6,old CMAB,1,300,6.467042602996255,0.0,5536.572769953052,abrCMAB-1104-0225-target-latency-6s-duration-300-bitrate-variable-1
+CUBIC,6,old CMAB,2,300,6.222640153330139,0.0,5274.7236905333975,abrCMAB-1104-0225-target-latency-6s-duration-300-bitrate-variable-2
+CUBIC,6,old CMAB,3,300,6.258335684062059,0.0,5332.476415094339,abrCMAB-1104-0225-target-latency-6s-duration-300-bitrate-variable-3
+CUBIC,6,old CMAB,4,300,6.222707692307693,0.0,5399.9277108433735,abrCMAB-1104-0225-target-latency-6s-duration-300-bitrate-variable-4
+CUBIC,6,CMAB+,0,300,6.227203581526862,0.0,5506.4333017975405,abrCMABPlus-1104-0225-target-latency-6s-duration-300-bitrate-variable-0
+CUBIC,6,CMAB+,1,300,6.407942165101335,0.0,5601.537698412699,abrCMABPlus-1104-0225-target-latency-6s-duration-300-bitrate-variable-1
+CUBIC,6,CMAB+,2,300,6.230683837429112,0.0,5457.914691943128,abrCMABPlus-1104-0225-target-latency-6s-duration-300-bitrate-variable-2
+CUBIC,6,CMAB+,3,300,6.2312748344370865,0.0,5324.620493358634,abrCMABPlus-1104-0225-target-latency-6s-duration-300-bitrate-variable-3
+CUBIC,6,CMAB+,4,300,6.229405558172398,0.0,5420.841209829868,abrCMABPlus-1104-0225-target-latency-6s-duration-300-bitrate-variable-4
+CUBIC,6,L2A,0,300,6.0032675,0.0,6000.0,abrL2A-1104-0225-target-latency-6s-duration-300-bitrate-variable-0
+CUBIC,6,L2A,1,300,6.005114927905004,0.0,6000.0,abrL2A-1104-0225-target-latency-6s-duration-300-bitrate-variable-1
+CUBIC,6,L2A,2,300,6.09867571004663,0.0,6000.0,abrL2A-1104-0225-target-latency-6s-duration-300-bitrate-variable-2
+CUBIC,6,L2A,3,300,5.996939974989579,0.0,6000.0,abrL2A-1104-0225-target-latency-6s-duration-300-bitrate-variable-3
+CUBIC,6,L2A,4,300,6.003463078848561,0.0,6000.0,abrL2A-1104-0225-target-latency-6s-duration-300-bitrate-variable-4
+BBR,3,old CMAB,0,300,3.7288756692444975,0.0,5254.21398684997,abrCMAB-1104-0811-target-latency-3s-duration-300-bitrate-variable-0
+BBR,3,old CMAB,1,300,3.2758796487603306,0.0,5292.098445595855,abrCMAB-1104-0811-target-latency-3s-duration-300-bitrate-variable-1
+BBR,3,old CMAB,2,300,3.441535880227155,0.0,5182.288969445883,abrCMAB-1104-0811-target-latency-3s-duration-300-bitrate-variable-2
+BBR,3,old CMAB,3,300,3.399025388601036,0.0,5293.633056133056,abrCMAB-1104-0811-target-latency-3s-duration-300-bitrate-variable-3
+BBR,3,old CMAB,4,300,3.426717592592593,0.0,5234.081527347781,abrCMAB-1104-0811-target-latency-3s-duration-300-bitrate-variable-4
+BBR,3,CMAB+,0,300,3.3566537084398975,0.0,5259.009240246407,abrCMABPlus-1104-0811-target-latency-3s-duration-300-bitrate-variable-0
+BBR,3,CMAB+,1,300,3.5174048625792813,0.0,5177.120890774125,abrCMABPlus-1104-0811-target-latency-3s-duration-300-bitrate-variable-1
+BBR,3,CMAB+,2,300,3.2495851119208745,0.0,5371.450939457202,abrCMABPlus-1104-0811-target-latency-3s-duration-300-bitrate-variable-2
+BBR,3,CMAB+,3,300,3.375639327024185,0.0,5189.2405063291135,abrCMABPlus-1104-0811-target-latency-3s-duration-300-bitrate-variable-3
+BBR,3,CMAB+,4,300,3.6912974683544304,0.0,5276.403601694915,abrCMABPlus-1104-0811-target-latency-3s-duration-300-bitrate-variable-4
+BBR,3,L2A,0,300,3.0402475,0.0,6000.0,abrL2A-1104-0811-target-latency-3s-duration-300-bitrate-variable-0
+BBR,3,L2A,1,300,3.0561458333333333,0.0,6000.0,abrL2A-1104-0811-target-latency-3s-duration-300-bitrate-variable-1
+BBR,3,L2A,2,300,3.040022509378908,0.0,6000.0,abrL2A-1104-0811-target-latency-3s-duration-300-bitrate-variable-2
+BBR,3,L2A,3,300,3.0595996607294316,0.0,6000.0,abrL2A-1104-0811-target-latency-3s-duration-300-bitrate-variable-3
+BBR,3,L2A,4,300,3.082005002084202,0.0,6000.0,abrL2A-1104-0811-target-latency-3s-duration-300-bitrate-variable-4
+BBR,4,old CMAB,0,300,4.230551431601272,0.0,5351.516764236296,abrCMAB-1104-0811-target-latency-4s-duration-300-bitrate-variable-0
+BBR,4,old CMAB,1,300,4.197962586851951,0.0,5242.918454935622,abrCMAB-1104-0811-target-latency-4s-duration-300-bitrate-variable-1
+BBR,4,old CMAB,2,300,4.193807509254363,0.0,5177.37400530504,abrCMAB-1104-0811-target-latency-4s-duration-300-bitrate-variable-2
+BBR,4,old CMAB,3,300,4.2245077498663814,0.0,5347.934549356223,abrCMAB-1104-0811-target-latency-4s-duration-300-bitrate-variable-3
+BBR,4,old CMAB,4,300,4.214142703862661,0.0,5137.923614846692,abrCMAB-1104-0811-target-latency-4s-duration-300-bitrate-variable-4
+BBR,4,CMAB+,0,300,4.211382322175732,0.0,5338.017829050866,abrCMABPlus-1104-0811-target-latency-4s-duration-300-bitrate-variable-0
+BBR,4,CMAB+,1,300,4.222417934782609,0.0,5230.578286961266,abrCMABPlus-1104-0811-target-latency-4s-duration-300-bitrate-variable-1
+BBR,4,CMAB+,2,300,4.1999466882067855,0.0,5314.864864864865,abrCMABPlus-1104-0811-target-latency-4s-duration-300-bitrate-variable-2
+BBR,4,CMAB+,3,300,4.331089702760085,0.0,5245.498135322323,abrCMABPlus-1104-0811-target-latency-4s-duration-300-bitrate-variable-3
+BBR,4,CMAB+,4,300,4.192972191930207,0.0,5319.2560175054705,abrCMABPlus-1104-0811-target-latency-4s-duration-300-bitrate-variable-4
+BBR,4,L2A,0,300,4.02729820907955,0.0,6000.0,abrL2A-1104-0811-target-latency-4s-duration-300-bitrate-variable-0
+BBR,4,L2A,1,300,4.042234944868532,0.0,6000.0,abrL2A-1104-0811-target-latency-4s-duration-300-bitrate-variable-1
+BBR,4,L2A,2,300,4.3204618386817,0.0,6000.0,abrL2A-1104-0811-target-latency-4s-duration-300-bitrate-variable-2
+BBR,4,L2A,3,300,4.00985607008761,0.0,6000.0,abrL2A-1104-0811-target-latency-4s-duration-300-bitrate-variable-3
+BBR,4,L2A,4,300,4.0007029166666666,0.0,6000.0,abrL2A-1104-0811-target-latency-4s-duration-300-bitrate-variable-4
+BBR,5,old CMAB,0,300,6.51606204379562,1.2773722627737227,5067.002442002442,abrCMAB-1104-0811-target-latency-5s-duration-300-bitrate-variable-0
+BBR,5,old CMAB,1,300,5.2196492027334855,0.0,5141.395082904517,abrCMAB-1104-0811-target-latency-5s-duration-300-bitrate-variable-1
+BBR,5,old CMAB,2,300,5.410526035502959,0.0,5271.140142517815,abrCMAB-1104-0811-target-latency-5s-duration-300-bitrate-variable-2
+BBR,5,old CMAB,3,300,5.211324013157895,0.0,5224.917491749175,abrCMAB-1104-0811-target-latency-5s-duration-300-bitrate-variable-3
+BBR,5,old CMAB,4,300,5.2126083521444695,0.0,5301.075877689695,abrCMAB-1104-0811-target-latency-5s-duration-300-bitrate-variable-4
+BBR,5,CMAB+,0,300,5.286481717933836,0.4062681369704005,5309.225844004656,abrCMABPlus-1104-0811-target-latency-5s-duration-300-bitrate-variable-0
+BBR,5,CMAB+,1,300,5.2188950056753685,0.0,5269.084186575654,abrCMABPlus-1104-0811-target-latency-5s-duration-300-bitrate-variable-1
+BBR,5,CMAB+,2,300,5.2284588921282795,0.0,5259.245172615565,abrCMABPlus-1104-0811-target-latency-5s-duration-300-bitrate-variable-2
+BBR,5,CMAB+,3,300,5.213263425664217,0.0,5226.7877412031785,abrCMABPlus-1104-0811-target-latency-5s-duration-300-bitrate-variable-3
+BBR,5,CMAB+,4,300,5.216775733179989,0.0,5358.597807270629,abrCMABPlus-1104-0811-target-latency-5s-duration-300-bitrate-variable-4
+BBR,5,L2A,0,300,4.997942059191329,0.0,6000.0,abrL2A-1104-0811-target-latency-5s-duration-300-bitrate-variable-0
+BBR,5,L2A,1,300,4.999899541475615,0.0,6000.0,abrL2A-1104-0811-target-latency-5s-duration-300-bitrate-variable-1
+BBR,5,L2A,2,300,5.4172033972125435,0.0,6000.0,abrL2A-1104-0811-target-latency-5s-duration-300-bitrate-variable-2
+BBR,5,L2A,3,300,4.997167993297025,0.0,6000.0,abrL2A-1104-0811-target-latency-5s-duration-300-bitrate-variable-3
+BBR,5,L2A,4,300,4.9983030050083475,0.0,6000.0,abrL2A-1104-0811-target-latency-5s-duration-300-bitrate-variable-4
+BBR,6,old CMAB,0,300,6.234013921113689,0.0,5399.389179755672,abrCMAB-1104-0811-target-latency-6s-duration-300-bitrate-variable-0
+BBR,6,old CMAB,1,300,6.229965700768776,0.0,5334.501187648456,abrCMAB-1104-0811-target-latency-6s-duration-300-bitrate-variable-1
+BBR,6,old CMAB,2,300,6.217314534883721,0.0,5285.785172212492,abrCMAB-1104-0811-target-latency-6s-duration-300-bitrate-variable-2
+BBR,6,old CMAB,3,300,6.234505813953488,0.0,5393.152680652681,abrCMAB-1104-0811-target-latency-6s-duration-300-bitrate-variable-3
+BBR,6,old CMAB,4,300,6.224373702422145,0.0,5285.474537037037,abrCMAB-1104-0811-target-latency-6s-duration-300-bitrate-variable-4
+BBR,6,CMAB+,0,300,6.291225274725274,0.42735042735042733,5236.611519607844,abrCMABPlus-1104-0811-target-latency-6s-duration-300-bitrate-variable-0
+BBR,6,CMAB+,1,300,6.23727449786975,0.0,5352.477064220184,abrCMABPlus-1104-0811-target-latency-6s-duration-300-bitrate-variable-1
+BBR,6,CMAB+,2,300,6.23737265258216,0.0,5292.221567472009,abrCMABPlus-1104-0811-target-latency-6s-duration-300-bitrate-variable-2
+BBR,6,CMAB+,3,300,6.542537336412625,1.4626635873749039,5508.668730650154,abrCMABPlus-1104-0811-target-latency-6s-duration-300-bitrate-variable-3
+BBR,6,CMAB+,4,300,6.23362890625,0.0,5253.536345776031,abrCMABPlus-1104-0811-target-latency-6s-duration-300-bitrate-variable-4
+BBR,6,L2A,0,300,6.297341579861111,0.0,6000.0,abrL2A-1104-0811-target-latency-6s-duration-300-bitrate-variable-0
+BBR,6,L2A,1,300,6.003072580645162,0.0,6000.0,abrL2A-1104-0811-target-latency-6s-duration-300-bitrate-variable-1
+BBR,6,L2A,2,300,5.997223073648361,0.0,6000.0,abrL2A-1104-0811-target-latency-6s-duration-300-bitrate-variable-2
+BBR,6,L2A,3,300,6.000416006669446,0.0,6000.0,abrL2A-1104-0811-target-latency-6s-duration-300-bitrate-variable-3
+BBR,6,L2A,4,300,5.9997934782608695,0.0,6000.0,abrL2A-1104-0811-target-latency-6s-duration-300-bitrate-variable-4
