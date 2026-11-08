@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.DS_Store
+*.local
+
+# Large cricket ladder encodes (~1.1 GB). Rebuild with: bash scripts/fetch-video.sh
+public/video/*.mp4
+public/video/*.webm
+!public/video/SOURCE.txt
+*.log

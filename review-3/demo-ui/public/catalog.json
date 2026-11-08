@@ -1,0 +1,2579 @@
+{
+  "generated_at": "2026-11-08T13:25:24.295Z",
+  "repo_root": "/Users/prathamshah/Projects/csg525-a7-leo-live",
+  "metrics": {
+    "trim": "drop first 20% of samples",
+    "rebuffer": "fraction of post-trim buffer ≤ 0.05 s",
+    "bitrate": "mean of post-trim positive bitrates",
+    "latency": "mean of post-trim playback_latency"
+  },
+  "handover": {
+    "period_s": 15,
+    "slots_within_minute": [
+      12,
+      27,
+      42,
+      57
+    ],
+    "description": "Paper LEO clock slots are wall-clock seconds {12,27,42,57} each minute (15 s period)."
+  },
+  "video": "video/sports.mp4",
+  "summary": {
+    "cells": 46,
+    "wired": 46,
+    "placeholders": 0,
+    "session_timelines": 148
+  },
+  "phases": [
+    {
+      "id": 1,
+      "name": "Phase 1 / Review I",
+      "families": [
+        "cubic-clock"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Phase 2 / Review II",
+      "families": [
+        "bbr-clock-canonical",
+        "bbr-faulty-vs-fixed"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Phase 3 / Review III",
+      "families": [
+        "capacity",
+        "clock-nonreg",
+        "capacity-4mbit-targets",
+        "trace-targets",
+        "stall-guard-spots"
+      ]
+    }
+  ],
+  "cells": [
+    {
+      "id": "p1-cubic-clock-t3",
+      "phase": 1,
+      "family": "cubic-clock",
+      "label": "Review I CUBIC clock · 3s",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 3,
+      "note": "Wired from /Users/prathamshah/BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation (prefix 0929-1424). CMAB+ did not exist in Review I.",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-0929-1424-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-3s/abrCMAB-0929-1424-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.174431183830623,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5120.857418111754
+          },
+          "timeline": "sessions/p1-cubic-clock-t3__old-cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-0929-1424-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-3s/abrL2A-0929-1424-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 2.996884904086726,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p1-cubic-clock-t3__l2a.json"
+        },
+        "Dynamic": {
+          "player": "Dynamic",
+          "status": "ok",
+          "round": 0,
+          "session": "abrDynamic-0929-1424-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-3s/abrDynamic-0929-1424-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 2.9993475000000056,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p1-cubic-clock-t3__dynamic.json"
+        },
+        "LoLP": {
+          "player": "LoLP",
+          "status": "ok",
+          "round": 0,
+          "session": "abrLoLP-0929-1424-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-3s/abrLoLP-0929-1424-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.0560903010031595,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 4934.253450439147
+          },
+          "timeline": "sessions/p1-cubic-clock-t3__lolp.json"
+        }
+      }
+    },
+    {
+      "id": "p1-cubic-clock-t4",
+      "phase": 1,
+      "family": "cubic-clock",
+      "label": "Review I CUBIC clock · 4s",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 4,
+      "note": "Wired from /Users/prathamshah/BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation (prefix 0929-1424). CMAB+ did not exist in Review I.",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-0929-1424-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-4s/abrCMAB-0929-1424-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.197422787193989,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 4593.844339622641
+          },
+          "timeline": "sessions/p1-cubic-clock-t4__old-cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-0929-1424-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-4s/abrL2A-0929-1424-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.998564583333331,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p1-cubic-clock-t4__l2a.json"
+        },
+        "Dynamic": {
+          "player": "Dynamic",
+          "status": "ok",
+          "round": 0,
+          "session": "abrDynamic-0929-1424-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-4s/abrDynamic-0929-1424-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.002928123694111,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p1-cubic-clock-t4__dynamic.json"
+        },
+        "LoLP": {
+          "player": "LoLP",
+          "status": "ok",
+          "round": 0,
+          "session": "abrLoLP-0929-1424-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-4s/abrLoLP-0929-1424-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.0660937500000465,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 4900.917813934084
+          },
+          "timeline": "sessions/p1-cubic-clock-t4__lolp.json"
+        }
+      }
+    },
+    {
+      "id": "p1-cubic-clock-t5",
+      "phase": 1,
+      "family": "cubic-clock",
+      "label": "Review I CUBIC clock · 5s",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 5,
+      "note": "Wired from /Users/prathamshah/BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation (prefix 0929-1424). CMAB+ did not exist in Review I.",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-0929-1424-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-5s/abrCMAB-0929-1424-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.216039614017291,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 4815.277071682765
+          },
+          "timeline": "sessions/p1-cubic-clock-t5__old-cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-0929-1424-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-5s/abrL2A-0929-1424-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.995475506756733,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p1-cubic-clock-t5__l2a.json"
+        },
+        "Dynamic": {
+          "player": "Dynamic",
+          "status": "ok",
+          "round": 0,
+          "session": "abrDynamic-0929-1424-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-5s/abrDynamic-0929-1424-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.997303182579556,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p1-cubic-clock-t5__dynamic.json"
+        },
+        "LoLP": {
+          "player": "LoLP",
+          "status": "ok",
+          "round": 0,
+          "session": "abrLoLP-0929-1424-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-5s/abrLoLP-0929-1424-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.070680584551328,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 4900
+          },
+          "timeline": "sessions/p1-cubic-clock-t5__lolp.json"
+        }
+      }
+    },
+    {
+      "id": "p1-cubic-clock-t6",
+      "phase": 1,
+      "family": "cubic-clock",
+      "label": "Review I CUBIC clock · 6s",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 6,
+      "note": "Wired from /Users/prathamshah/BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation (prefix 0929-1424). CMAB+ did not exist in Review I.",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-0929-1424-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-6s/abrCMAB-0929-1424-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.231304810126591,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 4863.286004056795
+          },
+          "timeline": "sessions/p1-cubic-clock-t6__old-cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-0929-1424-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-6s/abrL2A-0929-1424-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.1435097706032264,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p1-cubic-clock-t6__l2a.json"
+        },
+        "Dynamic": {
+          "player": "Dynamic",
+          "status": "ok",
+          "round": 0,
+          "session": "abrDynamic-0929-1424-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-6s/abrDynamic-0929-1424-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.997000000000003,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p1-cubic-clock-t6__dynamic.json"
+        },
+        "LoLP": {
+          "player": "LoLP",
+          "status": "ok",
+          "round": 0,
+          "session": "abrLoLP-0929-1424-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "../../BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation/target-6s/abrLoLP-0929-1424-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.106250208506857,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 4900
+          },
+          "timeline": "sessions/p1-cubic-clock-t6__lolp.json"
+        }
+      }
+    },
+    {
+      "id": "p2-bbr-clock-t3",
+      "phase": 2,
+      "family": "bbr-clock-canonical",
+      "label": "BBR clock (canonical) · 3s",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 3,
+      "note": "Review II canonical SHAPER=clock (1017-0606)",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-3s/abrCMAB-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.231027601809955,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5131.329401088929
+          },
+          "timeline": "sessions/p2-bbr-clock-t3__old-cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-3s/abrL2A-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.0442982090795434,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p2-bbr-clock-t3__l2a.json"
+        },
+        "Dynamic": {
+          "player": "Dynamic",
+          "status": "ok",
+          "round": 0,
+          "session": "abrDynamic-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-3s/abrDynamic-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.0818686440677974,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5208.404074702887
+          },
+          "timeline": "sessions/p2-bbr-clock-t3__dynamic.json"
+        },
+        "LoLP": {
+          "player": "LoLP",
+          "status": "ok",
+          "round": 0,
+          "session": "abrLoLP-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-3s/abrLoLP-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.134047916666613,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5380.4801670146135
+          },
+          "timeline": "sessions/p2-bbr-clock-t3__lolp.json"
+        }
+      }
+    },
+    {
+      "id": "p2-bbr-clock-t4",
+      "phase": 2,
+      "family": "bbr-clock-canonical",
+      "label": "BBR clock (canonical) · 4s",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 4,
+      "note": "Review II canonical SHAPER=clock (1017-0606)",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1017-0606-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-4s/abrCMAB-1017-0606-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.192990371389283,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5164.942528735633
+          },
+          "timeline": "sessions/p2-bbr-clock-t4__old-cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1017-0606-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-4s/abrL2A-1017-0606-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.9985411016949177,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p2-bbr-clock-t4__l2a.json"
+        },
+        "Dynamic": {
+          "player": "Dynamic",
+          "status": "ok",
+          "round": 0,
+          "session": "abrDynamic-1017-0606-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-4s/abrDynamic-1017-0606-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.003732203389836,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p2-bbr-clock-t4__dynamic.json"
+        },
+        "LoLP": {
+          "player": "LoLP",
+          "status": "ok",
+          "round": 0,
+          "session": "abrLoLP-1017-0606-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-4s/abrLoLP-1017-0606-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.0664219075384445,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 4945.932415519399
+          },
+          "timeline": "sessions/p2-bbr-clock-t4__lolp.json"
+        }
+      }
+    },
+    {
+      "id": "p2-bbr-clock-t5",
+      "phase": 2,
+      "family": "bbr-clock-canonical",
+      "label": "BBR clock (canonical) · 5s",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 5,
+      "note": "Review II canonical SHAPER=clock (1017-0606)",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1017-0606-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-5s/abrCMAB-1017-0606-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.209547072599576,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5151.0103383458645
+          },
+          "timeline": "sessions/p2-bbr-clock-t5__old-cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1017-0606-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-5s/abrL2A-1017-0606-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.000773750000006,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p2-bbr-clock-t5__l2a.json"
+        },
+        "Dynamic": {
+          "player": "Dynamic",
+          "status": "ok",
+          "round": 0,
+          "session": "abrDynamic-1017-0606-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-5s/abrDynamic-1017-0606-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.002708612040121,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5611.80904522613
+          },
+          "timeline": "sessions/p2-bbr-clock-t5__dynamic.json"
+        },
+        "LoLP": {
+          "player": "LoLP",
+          "status": "ok",
+          "round": 0,
+          "session": "abrLoLP-1017-0606-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-5s/abrLoLP-1017-0606-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.091927946688976,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 4902.795160617438
+          },
+          "timeline": "sessions/p2-bbr-clock-t5__lolp.json"
+        }
+      }
+    },
+    {
+      "id": "p2-bbr-clock-t6",
+      "phase": 2,
+      "family": "bbr-clock-canonical",
+      "label": "BBR clock (canonical) · 6s",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 6,
+      "note": "Review II canonical SHAPER=clock (1017-0606)",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1017-0606-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-6s/abrCMAB-1017-0606-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.2296968110423325,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5191.380133715377
+          },
+          "timeline": "sessions/p2-bbr-clock-t6__old-cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1017-0606-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-6s/abrL2A-1017-0606-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.002332220367264,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p2-bbr-clock-t6__l2a.json"
+        },
+        "Dynamic": {
+          "player": "Dynamic",
+          "status": "ok",
+          "round": 0,
+          "session": "abrDynamic-1017-0606-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-6s/abrDynamic-1017-0606-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.996795994993746,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5808.190555787714
+          },
+          "timeline": "sessions/p2-bbr-clock-t6__dynamic.json"
+        },
+        "LoLP": {
+          "player": "LoLP",
+          "status": "ok",
+          "round": 0,
+          "session": "abrLoLP-1017-0606-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-6s/abrLoLP-1017-0606-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.112238313856503,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 4900
+          },
+          "timeline": "sessions/p2-bbr-clock-t6__lolp.json"
+        }
+      }
+    },
+    {
+      "id": "p2-bbr-faulty-trace-t3",
+      "phase": 2,
+      "family": "bbr-faulty-vs-fixed",
+      "label": "BBR faulty TRACE shaper · 3s (appendix)",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 3,
+      "note": "Superseded SHAPER=trace run (1010-0432) — appendix contrast only",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1010-0432-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/BBR-Review-II-Deliverable/data/emulation-bbr/target-3s/abrCMAB-1010-0432-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 7.366284238886391,
+            "rebuffer_pct": 28.423888639425236,
+            "bitrate_kbps": 5793.597835888188
+          },
+          "timeline": "sessions/p2-bbr-faulty-trace-t3__old-cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1010-0432-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/BBR-Review-II-Deliverable/data/emulation-bbr/target-3s/abrL2A-1010-0432-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.5707383842611966,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 300
+          },
+          "timeline": "sessions/p2-bbr-faulty-trace-t3__l2a.json"
+        },
+        "Dynamic": {
+          "player": "Dynamic",
+          "status": "ok",
+          "round": 0,
+          "session": "abrDynamic-1010-0432-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/BBR-Review-II-Deliverable/data/emulation-bbr/target-3s/abrDynamic-1010-0432-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.051240453210245,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 616.2025316455696
+          },
+          "timeline": "sessions/p2-bbr-faulty-trace-t3__dynamic.json"
+        },
+        "LoLP": {
+          "player": "LoLP",
+          "status": "ok",
+          "round": 0,
+          "session": "abrLoLP-1010-0432-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/BBR-Review-II-Deliverable/data/emulation-bbr/target-3s/abrLoLP-1010-0432-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.667273447269709,
+            "rebuffer_pct": 5.00208420175073,
+            "bitrate_kbps": 767.5879396984925
+          },
+          "timeline": "sessions/p2-bbr-faulty-trace-t3__lolp.json"
+        }
+      }
+    },
+    {
+      "id": "p2-bbr-fixed-clock-t3",
+      "phase": 2,
+      "family": "bbr-faulty-vs-fixed",
+      "label": "BBR fixed CLOCK shaper · 3s",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 3,
+      "note": "Canonical clock fix for side-by-side contrast with faulty TRACE",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-3s/abrCMAB-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.231027601809955,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5131.329401088929
+          },
+          "timeline": "sessions/p2-bbr-fixed-clock-t3__old-cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-3s/abrL2A-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.0442982090795434,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p2-bbr-fixed-clock-t3__l2a.json"
+        },
+        "Dynamic": {
+          "player": "Dynamic",
+          "status": "ok",
+          "round": 0,
+          "session": "abrDynamic-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-3s/abrDynamic-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.0818686440677974,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5208.404074702887
+          },
+          "timeline": "sessions/p2-bbr-fixed-clock-t3__dynamic.json"
+        },
+        "LoLP": {
+          "player": "LoLP",
+          "status": "ok",
+          "round": 0,
+          "session": "abrLoLP-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock/target-3s/abrLoLP-1017-0606-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.134047916666613,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5380.4801670146135
+          },
+          "timeline": "sessions/p2-bbr-fixed-clock-t3__lolp.json"
+        }
+      }
+    },
+    {
+      "id": "p3-capacity-cubic-8mbit",
+      "phase": 3,
+      "family": "capacity",
+      "label": "Capacity 8 Mbit · CUBIC",
+      "transport": "CUBIC",
+      "axis": "capacity_mbit",
+      "axisValue": 8,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1103-1001-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-cubic/emulation-capacity-cubic-8mbit/target-3s/abrCMAB-1103-1001-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.939580588493637,
+            "rebuffer_pct": 3.820816864295125,
+            "bitrate_kbps": 5862.6760563380285
+          },
+          "timeline": "sessions/p3-capacity-cubic-8mbit__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1103-1001-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-cubic/emulation-capacity-cubic-8mbit/target-3s/abrCMABPlus-1103-1001-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.398062251655623,
+            "rebuffer_pct": 0.7947019867549668,
+            "bitrate_kbps": 5724.646017699115
+          },
+          "timeline": "sessions/p3-capacity-cubic-8mbit__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1103-1001-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-cubic/emulation-capacity-cubic-8mbit/target-3s/abrL2A-1103-1001-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.489968333333339,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-capacity-cubic-8mbit__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-capacity-cubic-4mbit",
+      "phase": 3,
+      "family": "capacity",
+      "label": "Capacity 4 Mbit · CUBIC",
+      "transport": "CUBIC",
+      "axis": "capacity_mbit",
+      "axisValue": 4,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1103-1125-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-cubic/emulation-capacity-cubic-4mbit/target-3s/abrCMAB-1103-1125-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 8.671328947368403,
+            "rebuffer_pct": 81.40350877192982,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-capacity-cubic-4mbit__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1103-1125-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-cubic/emulation-capacity-cubic-4mbit/target-3s/abrCMABPlus-1103-1125-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.5347839533841374,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1468.2329136690648
+          },
+          "timeline": "sessions/p3-capacity-cubic-4mbit__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1103-1125-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-cubic/emulation-capacity-cubic-4mbit/target-3s/abrL2A-1103-1125-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.352348333333325,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1500
+          },
+          "timeline": "sessions/p3-capacity-cubic-4mbit__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-capacity-cubic-1mbit",
+      "phase": 3,
+      "family": "capacity",
+      "label": "Capacity 1 Mbit · CUBIC",
+      "transport": "CUBIC",
+      "axis": "capacity_mbit",
+      "axisValue": 1,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1103-1249-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-cubic/emulation-capacity-cubic-1mbit/target-3s/abrCMAB-1103-1249-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 23.60736056214315,
+            "rebuffer_pct": 98.72639437856829,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-capacity-cubic-1mbit__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1103-1249-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-cubic/emulation-capacity-cubic-1mbit/target-3s/abrCMABPlus-1103-1249-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 7.258309964726627,
+            "rebuffer_pct": 17.15167548500882,
+            "bitrate_kbps": 890.6539991162174
+          },
+          "timeline": "sessions/p3-capacity-cubic-1mbit__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1103-1249-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-cubic/emulation-capacity-cubic-1mbit/target-3s/abrL2A-1103-1249-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.4709412744689803,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 450
+          },
+          "timeline": "sessions/p3-capacity-cubic-1mbit__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-capacity-bbr-8mbit",
+      "phase": 3,
+      "family": "capacity",
+      "label": "Capacity 8 Mbit · BBR",
+      "transport": "BBR",
+      "axis": "capacity_mbit",
+      "axisValue": 8,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1103-1954-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-bbr/emulation-capacity-bbr-8mbit/target-3s/abrCMAB-1103-1954-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.3572115211521245,
+            "rebuffer_pct": 0.585058505850585,
+            "bitrate_kbps": 5719.367945823928
+          },
+          "timeline": "sessions/p3-capacity-bbr-8mbit__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1103-1954-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-bbr/emulation-capacity-bbr-8mbit/target-3s/abrCMABPlus-1103-1954-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.704364956876991,
+            "rebuffer_pct": 3.6768043576940537,
+            "bitrate_kbps": 5871.155595996361
+          },
+          "timeline": "sessions/p3-capacity-bbr-8mbit__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1103-1954-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-bbr/emulation-capacity-bbr-8mbit/target-3s/abrL2A-1103-1954-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.206829166666673,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-capacity-bbr-8mbit__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-capacity-bbr-4mbit",
+      "phase": 3,
+      "family": "capacity",
+      "label": "Capacity 4 Mbit · BBR",
+      "transport": "BBR",
+      "axis": "capacity_mbit",
+      "axisValue": 4,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1103-2118-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-bbr/emulation-capacity-bbr-4mbit/target-3s/abrCMAB-1103-2118-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 8.591918738898705,
+            "rebuffer_pct": 67.53996447602131,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-capacity-bbr-4mbit__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1103-2118-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-bbr/emulation-capacity-bbr-4mbit/target-3s/abrCMABPlus-1103-2118-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.6326556016597453,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1479.1165587419057
+          },
+          "timeline": "sessions/p3-capacity-bbr-4mbit__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1103-2118-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-bbr/emulation-capacity-bbr-4mbit/target-3s/abrL2A-1103-2118-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.419399166666671,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1500
+          },
+          "timeline": "sessions/p3-capacity-bbr-4mbit__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-capacity-bbr-1mbit",
+      "phase": 3,
+      "family": "capacity",
+      "label": "Capacity 1 Mbit · BBR",
+      "transport": "BBR",
+      "axis": "capacity_mbit",
+      "axisValue": 1,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1103-2242-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-bbr/emulation-capacity-bbr-1mbit/target-3s/abrCMAB-1103-2242-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 25.61449377777764,
+            "rebuffer_pct": 99.06666666666666,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-capacity-bbr-1mbit__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1103-2242-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-bbr/emulation-capacity-bbr-1mbit/target-3s/abrCMABPlus-1103-2242-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.8548036363636395,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 455.7455540355677
+          },
+          "timeline": "sessions/p3-capacity-bbr-1mbit__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1103-2242-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-bbr/emulation-capacity-bbr-1mbit/target-3s/abrL2A-1103-2242-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.6570838898163602,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 450
+          },
+          "timeline": "sessions/p3-capacity-bbr-1mbit__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-clock-cubic-t3",
+      "phase": 3,
+      "family": "clock-nonreg",
+      "label": "Clock non-reg · 3s · CUBIC",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 3,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-0225-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-3s/abrCMAB-1104-0225-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.263841502519463,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5265.349264705882
+          },
+          "timeline": "sessions/p3-clock-cubic-t3__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-0225-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-3s/abrCMABPlus-1104-0225-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.262445152480657,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5433.257299270073
+          },
+          "timeline": "sessions/p3-clock-cubic-t3__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-0225-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-3s/abrL2A-1104-0225-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.957631666666657,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-clock-cubic-t3__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-clock-cubic-t4",
+      "phase": 3,
+      "family": "clock-nonreg",
+      "label": "Clock non-reg · 4s · CUBIC",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 4,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-0225-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-4s/abrCMAB-1104-0225-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.5419596920289935,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5264.418710263397
+          },
+          "timeline": "sessions/p3-clock-cubic-t4__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-0225-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-4s/abrCMABPlus-1104-0225-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.594851093531864,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5412.231559290382
+          },
+          "timeline": "sessions/p3-clock-cubic-t4__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-0225-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-4s/abrL2A-1104-0225-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.427182916666673,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-clock-cubic-t4__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-clock-cubic-t5",
+      "phase": 3,
+      "family": "clock-nonreg",
+      "label": "Clock non-reg · 5s · CUBIC",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 5,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-0225-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-5s/abrCMAB-1104-0225-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.422903454803599,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5472.129981024668
+          },
+          "timeline": "sessions/p3-clock-cubic-t5__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-0225-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-5s/abrCMABPlus-1104-0225-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.21354964370548,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5488.894184938036
+          },
+          "timeline": "sessions/p3-clock-cubic-t5__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-0225-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-5s/abrL2A-1104-0225-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.010803258145364,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-clock-cubic-t5__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-clock-cubic-t6",
+      "phase": 3,
+      "family": "clock-nonreg",
+      "label": "Clock non-reg · 6s · CUBIC",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 6,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-0225-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-6s/abrCMAB-1104-0225-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.228559787849545,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5348.355899419729
+          },
+          "timeline": "sessions/p3-clock-cubic-t6__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-0225-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-6s/abrCMABPlus-1104-0225-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.2272035815268465,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5506.4333017975405
+          },
+          "timeline": "sessions/p3-clock-cubic-t6__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-0225-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-6s/abrL2A-1104-0225-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.003267500000017,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-clock-cubic-t6__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-clock-bbr-t3",
+      "phase": 3,
+      "family": "clock-nonreg",
+      "label": "Clock non-reg · 3s · BBR",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 3,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-0811-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-3s/abrCMAB-1104-0811-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.728875669244487,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5254.21398684997
+          },
+          "timeline": "sessions/p3-clock-bbr-t3__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-0811-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-3s/abrCMABPlus-1104-0811-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.356653708439903,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5259.009240246407
+          },
+          "timeline": "sessions/p3-clock-bbr-t3__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-0811-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-3s/abrL2A-1104-0811-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.040247500000004,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-clock-bbr-t3__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-clock-bbr-t4",
+      "phase": 3,
+      "family": "clock-nonreg",
+      "label": "Clock non-reg · 4s · BBR",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 4,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-0811-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-4s/abrCMAB-1104-0811-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.230551431601298,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5351.516764236296
+          },
+          "timeline": "sessions/p3-clock-bbr-t4__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-0811-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-4s/abrCMABPlus-1104-0811-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.211382322175736,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5338.017829050866
+          },
+          "timeline": "sessions/p3-clock-bbr-t4__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-0811-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-4s/abrL2A-1104-0811-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.027298209079555,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-clock-bbr-t4__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-clock-bbr-t5",
+      "phase": 3,
+      "family": "clock-nonreg",
+      "label": "Clock non-reg · 5s · BBR",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 5,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-0811-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-5s/abrCMAB-1104-0811-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.51606204379561,
+            "rebuffer_pct": 1.2773722627737227,
+            "bitrate_kbps": 5067.002442002442
+          },
+          "timeline": "sessions/p3-clock-bbr-t5__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-0811-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-5s/abrCMABPlus-1104-0811-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.286481717933852,
+            "rebuffer_pct": 0.4062681369704005,
+            "bitrate_kbps": 5309.225844004656
+          },
+          "timeline": "sessions/p3-clock-bbr-t5__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-0811-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-5s/abrL2A-1104-0811-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.9979420591913355,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-clock-bbr-t5__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-clock-bbr-t6",
+      "phase": 3,
+      "family": "clock-nonreg",
+      "label": "Clock non-reg · 6s · BBR",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 6,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-0811-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-6s/abrCMAB-1104-0811-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.234013921113681,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5399.389179755672
+          },
+          "timeline": "sessions/p3-clock-bbr-t6__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-0811-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-6s/abrCMABPlus-1104-0811-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.291225274725297,
+            "rebuffer_pct": 0.42735042735042733,
+            "bitrate_kbps": 5236.611519607844
+          },
+          "timeline": "sessions/p3-clock-bbr-t6__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-0811-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-6s/abrL2A-1104-0811-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.297341579861118,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-clock-bbr-t6__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-4mbit-cubic-t3",
+      "phase": 3,
+      "family": "capacity-4mbit-targets",
+      "label": "4 Mbit targets · 3s · CUBIC",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 3,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-2014-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-3s/abrCMAB-1104-2014-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 8.673956255468077,
+            "rebuffer_pct": 81.49606299212599,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-4mbit-cubic-t3__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-2014-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-3s/abrCMABPlus-1104-2014-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.600286807744261,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1451.7373646209387
+          },
+          "timeline": "sessions/p3-4mbit-cubic-t3__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-2014-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-3s/abrL2A-1104-2014-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.31938667820069,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1500
+          },
+          "timeline": "sessions/p3-4mbit-cubic-t3__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-4mbit-cubic-t4",
+      "phase": 3,
+      "family": "capacity-4mbit-targets",
+      "label": "4 Mbit targets · 4s · CUBIC",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 4,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-2014-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-4s/abrCMAB-1104-2014-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 9.508556533216039,
+            "rebuffer_pct": 76.3308402991641,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-4mbit-cubic-t4__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-2014-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-4s/abrCMABPlus-1104-2014-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.2102621841155,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1471.9004524886877
+          },
+          "timeline": "sessions/p3-4mbit-cubic-t4__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-2014-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-4s/abrL2A-1104-2014-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.998730125523027,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1500
+          },
+          "timeline": "sessions/p3-4mbit-cubic-t4__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-4mbit-cubic-t5",
+      "phase": 3,
+      "family": "capacity-4mbit-targets",
+      "label": "4 Mbit targets · 5s · CUBIC",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 5,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-2014-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-5s/abrCMAB-1104-2014-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 10.578458333333398,
+            "rebuffer_pct": 81.60460992907801,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-4mbit-cubic-t5__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-2014-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-5s/abrCMABPlus-1104-2014-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.214170664206615,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1470.027752081406
+          },
+          "timeline": "sessions/p3-4mbit-cubic-t5__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-2014-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-5s/abrL2A-1104-2014-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.998736250000013,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1500
+          },
+          "timeline": "sessions/p3-4mbit-cubic-t5__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-4mbit-cubic-t6",
+      "phase": 3,
+      "family": "capacity-4mbit-targets",
+      "label": "4 Mbit targets · 6s · CUBIC",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 6,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-2014-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-6s/abrCMAB-1104-2014-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 11.646727272727201,
+            "rebuffer_pct": 72.81639928698752,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-4mbit-cubic-t6__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-2014-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-6s/abrCMABPlus-1104-2014-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.22627871939737,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1462.3760037789325
+          },
+          "timeline": "sessions/p3-4mbit-cubic-t6__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-2014-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-6s/abrL2A-1104-2014-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.997721250000015,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1500
+          },
+          "timeline": "sessions/p3-4mbit-cubic-t6__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-4mbit-bbr-t3",
+      "phase": 3,
+      "family": "capacity-4mbit-targets",
+      "label": "4 Mbit targets · 3s · BBR",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 3,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1105-0204-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-3s/abrCMAB-1105-0204-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 8.587841113105924,
+            "rebuffer_pct": 65.08078994614003,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-4mbit-bbr-t3__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1105-0204-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-3s/abrCMABPlus-1105-0204-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.635350423330198,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1473.8791882963662
+          },
+          "timeline": "sessions/p3-4mbit-bbr-t3__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1105-0204-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-3s/abrL2A-1105-0204-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.410320502092055,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1500
+          },
+          "timeline": "sessions/p3-4mbit-bbr-t3__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-4mbit-bbr-t4",
+      "phase": 3,
+      "family": "capacity-4mbit-targets",
+      "label": "4 Mbit targets · 4s · BBR",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 4,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1105-0204-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-4s/abrCMAB-1105-0204-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 9.556164939161832,
+            "rebuffer_pct": 67.46282109058134,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-4mbit-bbr-t4__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1105-0204-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-4s/abrCMABPlus-1105-0204-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.193090643274882,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1480.1319648093843
+          },
+          "timeline": "sessions/p3-4mbit-bbr-t4__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1105-0204-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-4s/abrL2A-1105-0204-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.003131666666669,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1500
+          },
+          "timeline": "sessions/p3-4mbit-bbr-t4__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-4mbit-bbr-t5",
+      "phase": 3,
+      "family": "capacity-4mbit-targets",
+      "label": "4 Mbit targets · 5s · BBR",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 5,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1105-0204-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-5s/abrCMAB-1105-0204-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 10.888121774558607,
+            "rebuffer_pct": 68.2209144409235,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-4mbit-bbr-t5__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1105-0204-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-5s/abrCMABPlus-1105-0204-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.213317560975623,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1477.9843444227006
+          },
+          "timeline": "sessions/p3-4mbit-bbr-t5__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1105-0204-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-5s/abrL2A-1105-0204-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.998172813036023,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1500
+          },
+          "timeline": "sessions/p3-4mbit-bbr-t5__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-4mbit-bbr-t6",
+      "phase": 3,
+      "family": "capacity-4mbit-targets",
+      "label": "4 Mbit targets · 6s · BBR",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 6,
+      "note": null,
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1105-0204-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-6s/abrCMAB-1105-0204-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 11.820665293040246,
+            "rebuffer_pct": 65.33882783882784,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-4mbit-bbr-t6__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1105-0204-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-6s/abrCMABPlus-1105-0204-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.227515373352869,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1478.0362389813909
+          },
+          "timeline": "sessions/p3-4mbit-bbr-t6__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1105-0204-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-6s/abrL2A-1105-0204-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.999944091486655,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1500
+          },
+          "timeline": "sessions/p3-4mbit-bbr-t6__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-trace-cubic-t3",
+      "phase": 3,
+      "family": "trace-targets",
+      "label": "Trace · 3s · CUBIC",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 3,
+      "note": "Canonical stall-guard-on trace matrix",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1107-1442-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-3s/abrCMAB-1107-1442-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 17.015000000000033,
+            "rebuffer_pct": 85.28896672504378,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-trace-cubic-t3__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1107-1442-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-3s/abrCMABPlus-1107-1442-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.155490316901417,
+            "rebuffer_pct": 12.764084507042254,
+            "bitrate_kbps": 708.4105960264901
+          },
+          "timeline": "sessions/p3-trace-cubic-t3__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1107-1442-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-3s/abrL2A-1107-1442-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.9428558933777604,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 300
+          },
+          "timeline": "sessions/p3-trace-cubic-t3__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-trace-cubic-t4",
+      "phase": 3,
+      "family": "trace-targets",
+      "label": "Trace · 4s · CUBIC",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 4,
+      "note": "Canonical stall-guard-on trace matrix",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1107-1442-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-4s/abrCMAB-1107-1442-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 25.651449537241035,
+            "rebuffer_pct": 89.59894226531512,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-trace-cubic-t4__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1107-1442-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-4s/abrCMABPlus-1107-1442-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 7.507298580301698,
+            "rebuffer_pct": 10.425909494232476,
+            "bitrate_kbps": 902.0017793594307
+          },
+          "timeline": "sessions/p3-trace-cubic-t4__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1107-1442-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-4s/abrL2A-1107-1442-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.625091249999999,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 300
+          },
+          "timeline": "sessions/p3-trace-cubic-t4__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-trace-cubic-t5",
+      "phase": 3,
+      "family": "trace-targets",
+      "label": "Trace · 5s · CUBIC",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 5,
+      "note": "Canonical stall-guard-on trace matrix",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1107-1442-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-5s/abrCMAB-1107-1442-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 19.93623498233225,
+            "rebuffer_pct": 84.18727915194346,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-trace-cubic-t5__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1107-1442-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-5s/abrCMABPlus-1107-1442-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 8.393846153846155,
+            "rebuffer_pct": 11.225402504472273,
+            "bitrate_kbps": 724.7085201793722
+          },
+          "timeline": "sessions/p3-trace-cubic-t5__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1107-1442-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-5s/abrL2A-1107-1442-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.594905754795647,
+            "rebuffer_pct": 1.3344453711426187,
+            "bitrate_kbps": 300
+          },
+          "timeline": "sessions/p3-trace-cubic-t5__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-trace-cubic-t6",
+      "phase": 3,
+      "family": "trace-targets",
+      "label": "Trace · 6s · CUBIC",
+      "transport": "CUBIC",
+      "axis": "target_s",
+      "axisValue": 6,
+      "note": "Canonical stall-guard-on trace matrix",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1107-1442-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-6s/abrCMAB-1107-1442-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 19.822280693950137,
+            "rebuffer_pct": 77.22419928825623,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-trace-cubic-t6__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1107-1442-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-6s/abrCMABPlus-1107-1442-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 9.266306970509389,
+            "rebuffer_pct": 14.20911528150134,
+            "bitrate_kbps": 949.7311827956989
+          },
+          "timeline": "sessions/p3-trace-cubic-t6__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1107-1442-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-6s/abrL2A-1107-1442-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.125707500000002,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 300
+          },
+          "timeline": "sessions/p3-trace-cubic-t6__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-trace-bbr-t3",
+      "phase": 3,
+      "family": "trace-targets",
+      "label": "Trace · 3s · BBR",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 3,
+      "note": "Canonical stall-guard-on trace matrix",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1107-2018-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-3s/abrCMAB-1107-2018-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 7.254391324200908,
+            "rebuffer_pct": 33.97260273972603,
+            "bitrate_kbps": 5865.19248395967
+          },
+          "timeline": "sessions/p3-trace-bbr-t3__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1107-2018-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-3s/abrCMABPlus-1107-2018-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.6021829608938525,
+            "rebuffer_pct": 8.845437616387336,
+            "bitrate_kbps": 3214.9065420560746
+          },
+          "timeline": "sessions/p3-trace-bbr-t3__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1107-2018-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-3s/abrL2A-1107-2018-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.8267487331081043,
+            "rebuffer_pct": 0.8868243243243243,
+            "bitrate_kbps": 448.8539898132428
+          },
+          "timeline": "sessions/p3-trace-bbr-t3__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-trace-bbr-t4",
+      "phase": 3,
+      "family": "trace-targets",
+      "label": "Trace · 4s · BBR",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 4,
+      "note": "Canonical stall-guard-on trace matrix",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1107-2018-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-4s/abrCMAB-1107-2018-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 8.263132929104467,
+            "rebuffer_pct": 30.92350746268657,
+            "bitrate_kbps": 5813.523631258774
+          },
+          "timeline": "sessions/p3-trace-bbr-t4__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1107-2018-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-4s/abrCMABPlus-1107-2018-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 7.028197964847369,
+            "rebuffer_pct": 6.012950971322849,
+            "bitrate_kbps": 2715.7308584686775
+          },
+          "timeline": "sessions/p3-trace-bbr-t4__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1107-2018-target-latency-4s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-4s/abrL2A-1107-2018-target-latency-4s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.224516249999992,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 300
+          },
+          "timeline": "sessions/p3-trace-bbr-t4__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-trace-bbr-t5",
+      "phase": 3,
+      "family": "trace-targets",
+      "label": "Trace · 5s · BBR",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 5,
+      "note": "Canonical stall-guard-on trace matrix",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1107-2018-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-5s/abrCMAB-1107-2018-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 8.960790508149557,
+            "rebuffer_pct": 28.619367209971237,
+            "bitrate_kbps": 5896.389022628791
+          },
+          "timeline": "sessions/p3-trace-bbr-t5__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1107-2018-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-5s/abrCMABPlus-1107-2018-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 7.451879089615933,
+            "rebuffer_pct": 6.780464675201517,
+            "bitrate_kbps": 2304.3312708234175
+          },
+          "timeline": "sessions/p3-trace-bbr-t5__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1107-2018-target-latency-5s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-5s/abrL2A-1107-2018-target-latency-5s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 5.303970404335133,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 450
+          },
+          "timeline": "sessions/p3-trace-bbr-t5__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-trace-bbr-t6",
+      "phase": 3,
+      "family": "trace-targets",
+      "label": "Trace · 6s · BBR",
+      "transport": "BBR",
+      "axis": "target_s",
+      "axisValue": 6,
+      "note": "Canonical stall-guard-on trace matrix",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1107-2018-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-6s/abrCMAB-1107-2018-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 9.77657259615383,
+            "rebuffer_pct": 25.240384615384617,
+            "bitrate_kbps": 5889.3339768339765
+          },
+          "timeline": "sessions/p3-trace-bbr-t6__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1107-2018-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-6s/abrCMABPlus-1107-2018-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 8.36328790052606,
+            "rebuffer_pct": 4.734576757532281,
+            "bitrate_kbps": 3154.2226487523994
+          },
+          "timeline": "sessions/p3-trace-bbr-t6__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1107-2018-target-latency-6s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-6s/abrL2A-1107-2018-target-latency-6s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.26722509378907,
+            "rebuffer_pct": 0.16673614005835766,
+            "bitrate_kbps": 450
+          },
+          "timeline": "sessions/p3-trace-bbr-t6__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-stallguard-clock-cubic",
+      "phase": 3,
+      "family": "stall-guard-spots",
+      "label": "Stall-guard spot · clock · CUBIC",
+      "transport": "CUBIC",
+      "axis": "spot",
+      "axisValue": "clock",
+      "note": "Spot representation from clock-nonreg tree (full stall-guard rematrix skipped; spots held).",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-0225-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-3s/abrCMAB-1104-0225-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.263841502519463,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5265.349264705882
+          },
+          "timeline": "sessions/p3-stallguard-clock-cubic__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-0225-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-3s/abrCMABPlus-1104-0225-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 4.262445152480657,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5433.257299270073
+          },
+          "timeline": "sessions/p3-stallguard-clock-cubic__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-0225-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-cubic/emulation-clock-nonreg-cubic/target-3s/abrL2A-1104-0225-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.957631666666657,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-stallguard-clock-cubic__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-stallguard-4mbit-cubic",
+      "phase": 3,
+      "family": "stall-guard-spots",
+      "label": "Stall-guard spot · 4mbit · CUBIC",
+      "transport": "CUBIC",
+      "axis": "spot",
+      "axisValue": "4mbit",
+      "note": "Spot representation from 4 Mbit targets tree (full stall-guard rematrix skipped; spots held).",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-2014-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-3s/abrCMAB-1104-2014-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 8.673956255468077,
+            "rebuffer_pct": 81.49606299212599,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-stallguard-4mbit-cubic__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-2014-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-3s/abrCMABPlus-1104-2014-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.600286807744261,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1451.7373646209387
+          },
+          "timeline": "sessions/p3-stallguard-4mbit-cubic__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-2014-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-cubic/target-3s/abrL2A-1104-2014-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.31938667820069,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1500
+          },
+          "timeline": "sessions/p3-stallguard-4mbit-cubic__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-stallguard-trace-cubic",
+      "phase": 3,
+      "family": "stall-guard-spots",
+      "label": "Stall-guard spot · trace · CUBIC",
+      "transport": "CUBIC",
+      "axis": "spot",
+      "axisValue": "trace",
+      "note": "Canonical stall-guard-on trace data (3 s spot).",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1107-1442-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-3s/abrCMAB-1107-1442-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 17.015000000000033,
+            "rebuffer_pct": 85.28896672504378,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-stallguard-trace-cubic__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1107-1442-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-3s/abrCMABPlus-1107-1442-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.155490316901417,
+            "rebuffer_pct": 12.764084507042254,
+            "bitrate_kbps": 708.4105960264901
+          },
+          "timeline": "sessions/p3-stallguard-trace-cubic__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1107-1442-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-cubic/target-3s/abrL2A-1107-1442-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.9428558933777604,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 300
+          },
+          "timeline": "sessions/p3-stallguard-trace-cubic__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-stallguard-clock-bbr",
+      "phase": 3,
+      "family": "stall-guard-spots",
+      "label": "Stall-guard spot · clock · BBR",
+      "transport": "BBR",
+      "axis": "spot",
+      "axisValue": "clock",
+      "note": "Spot representation from clock-nonreg tree (full stall-guard rematrix skipped; spots held).",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1104-0811-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-3s/abrCMAB-1104-0811-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.728875669244487,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5254.21398684997
+          },
+          "timeline": "sessions/p3-stallguard-clock-bbr__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1104-0811-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-3s/abrCMABPlus-1104-0811-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.356653708439903,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 5259.009240246407
+          },
+          "timeline": "sessions/p3-stallguard-clock-bbr__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1104-0811-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/clock-nonreg-bbr/target-3s/abrL2A-1104-0811-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.040247500000004,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-stallguard-clock-bbr__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-stallguard-4mbit-bbr",
+      "phase": 3,
+      "family": "stall-guard-spots",
+      "label": "Stall-guard spot · 4mbit · BBR",
+      "transport": "BBR",
+      "axis": "spot",
+      "axisValue": "4mbit",
+      "note": "Spot representation from 4 Mbit targets tree (full stall-guard rematrix skipped; spots held).",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1105-0204-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-3s/abrCMAB-1105-0204-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 8.587841113105924,
+            "rebuffer_pct": 65.08078994614003,
+            "bitrate_kbps": 6000
+          },
+          "timeline": "sessions/p3-stallguard-4mbit-bbr__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1105-0204-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-3s/abrCMABPlus-1105-0204-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.635350423330198,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1473.8791882963662
+          },
+          "timeline": "sessions/p3-stallguard-4mbit-bbr__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1105-0204-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/capacity-4mbit-targets-bbr/target-3s/abrL2A-1105-0204-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.410320502092055,
+            "rebuffer_pct": 0,
+            "bitrate_kbps": 1500
+          },
+          "timeline": "sessions/p3-stallguard-4mbit-bbr__l2a.json"
+        }
+      }
+    },
+    {
+      "id": "p3-stallguard-trace-bbr",
+      "phase": 3,
+      "family": "stall-guard-spots",
+      "label": "Stall-guard spot · trace · BBR",
+      "transport": "BBR",
+      "axis": "spot",
+      "axisValue": "trace",
+      "note": "Canonical stall-guard-on trace data (3 s spot).",
+      "placeholder": false,
+      "players": {
+        "old CMAB": {
+          "player": "old CMAB",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMAB-1107-2018-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-3s/abrCMAB-1107-2018-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 7.254391324200908,
+            "rebuffer_pct": 33.97260273972603,
+            "bitrate_kbps": 5865.19248395967
+          },
+          "timeline": "sessions/p3-stallguard-trace-bbr__old-cmab.json"
+        },
+        "CMAB+": {
+          "player": "CMAB+",
+          "status": "ok",
+          "round": 0,
+          "session": "abrCMABPlus-1107-2018-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-3s/abrCMABPlus-1107-2018-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 6.6021829608938525,
+            "rebuffer_pct": 8.845437616387336,
+            "bitrate_kbps": 3214.9065420560746
+          },
+          "timeline": "sessions/p3-stallguard-trace-bbr__cmab.json"
+        },
+        "L2A": {
+          "player": "L2A",
+          "status": "ok",
+          "round": 0,
+          "session": "abrL2A-1107-2018-target-latency-3s-duration-300-bitrate-variable-0",
+          "source": "review-3/data/trace-targets-bbr/target-3s/abrL2A-1107-2018-target-latency-3s-duration-300-bitrate-variable-0",
+          "metrics": {
+            "latency_s": 3.8267487331081043,
+            "rebuffer_pct": 0.8868243243243243,
+            "bitrate_kbps": 448.8539898132428
+          },
+          "timeline": "sessions/p3-stallguard-trace-bbr__l2a.json"
+        }
+      }
+    }
+  ]
+}

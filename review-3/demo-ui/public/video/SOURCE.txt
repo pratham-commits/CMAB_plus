@@ -1,0 +1,34 @@
+CMAB+ demo cricket footage
+==========================
+
+Source title:
+  Nambour v USC – 2021-22 Sunshine Coast Cricket Association Division 3 Round 15
+
+Author / attribution:
+  PattmanSport
+
+Wikimedia Commons page:
+  https://commons.wikimedia.org/wiki/File:Nambour_v_USC_%E2%80%93_2021-22_Sunshine_Coast_Cricket_Association_Division_3_Round_15.webm
+
+Original download URL (VP9 360p transcode used as encode source):
+  https://upload.wikimedia.org/wikipedia/commons/transcoded/8/81/Nambour_v_USC_%E2%80%93_2021-22_Sunshine_Coast_Cricket_Association_Division_3_Round_15.webm/Nambour_v_USC_%E2%80%93_2021-22_Sunshine_Coast_Cricket_Association_Division_3_Round_15.webm.360p.vp9.webm
+
+Original full file (403.79 MB, 1280×720, 46 min 40 s):
+  https://upload.wikimedia.org/wikipedia/commons/8/81/Nambour_v_USC_%E2%80%93_2021-22_Sunshine_Coast_Cricket_Association_Division_3_Round_15.webm
+
+License:
+  Creative Commons Attribution 3.0 Unported (CC BY 3.0)
+  https://creativecommons.org/licenses/by/3.0/
+  YouTube CC release reviewed on Commons (2022-02-15).
+
+Source duration / size (360p transcode):
+  2800.132 s (~46 min 40 s) · 130 MB · ~390 kbps
+
+Demo encodes (first 30 minutes, H.264, muted):
+  cricket-300.mp4   ~65 MB  · 426×240  · ~300 kbps   (Low)
+  cricket-900.mp4   ~194 MB · 640×360  · ~900 kbps   (Medium)
+  cricket-1500.mp4  ~321 MB · 854×480  · ~1500 kbps  (High)  [= sports.mp4 hardlink]
+  cricket-6000.mp4  ~522 MB · 1280×720 · ~2500 kbps  (Ultra / “6000” rung; capped by source fidelity)
+
+Re-encode:
+  bash scripts/fetch-video.sh
