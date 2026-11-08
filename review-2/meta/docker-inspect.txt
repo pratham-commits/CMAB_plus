@@ -1,0 +1,496 @@
+bundle_created_utc=2026-10-18T05:35:43Z
+hostname=instance-20260929-210923
+pwd=/home/prathamsshah724/mmsys24-starlink-livestreaming
+run_id_prefix=1017-0606
+figures_subdir=emulation-bbr-clock
+SHAPER=clock
+TCP_CC=bbr
+
+=== docker inspect runner ===
+[
+    {
+        "Id": "506e94219a2ee2d0096d7ce2f80700ab492552e8baa349a426b82a8a31b77279",
+        "Created": "2026-10-17T13:06:20.530035282Z",
+        "Path": "poetry",
+        "Args": [
+            "run",
+            "python",
+            "batch_runner.py"
+        ],
+        "State": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-10-17T13:06:20.665908678Z",
+            "FinishedAt": "2026-10-18T04:02:26.339293959Z"
+        },
+        "Image": "sha256:2aa1a42e9726201196a4f84a06225533f922bbc6018ea7f2be2e2ca41e0943b6",
+        "ResolvConfPath": "/var/lib/docker/containers/506e94219a2ee2d0096d7ce2f80700ab492552e8baa349a426b82a8a31b77279/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/506e94219a2ee2d0096d7ce2f80700ab492552e8baa349a426b82a8a31b77279/hostname",
+        "HostsPath": "/var/lib/docker/containers/506e94219a2ee2d0096d7ce2f80700ab492552e8baa349a426b82a8a31b77279/hosts",
+        "LogPath": "/var/lib/docker/containers/506e94219a2ee2d0096d7ce2f80700ab492552e8baa349a426b82a8a31b77279/506e94219a2ee2d0096d7ce2f80700ab492552e8baa349a426b82a8a31b77279-json.log",
+        "Name": "/dashjs-runner",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "unconfined",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "/home/prathamsshah724/mmsys24-starlink-livestreaming/experiments/batch-emulation.json:/batch.json:rw",
+                "/home/prathamsshah724/mmsys24-starlink-livestreaming/figures:/figures:rw",
+                "/var/run/docker.sock:/var/run/docker.sock:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "dashjs",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": [],
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": true,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": [
+                "label=disable"
+            ],
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": null,
+            "ReadonlyPaths": null
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/prathamsshah724/mmsys24-starlink-livestreaming/experiments/batch-emulation.json",
+                "Destination": "/batch.json",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/home/prathamsshah724/mmsys24-starlink-livestreaming/figures",
+                "Destination": "/figures",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/var/run/docker.sock",
+                "Destination": "/var/run/docker.sock",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "506e94219a2e",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "WORKDIR=/home/prathamsshah724/mmsys24-starlink-livestreaming",
+                "VIDEO=0",
+                "EMULATION_FIGURES_SUBDIR=emulation-bbr-clock",
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+                "PYTHON_VERSION=3.12.0",
+                "PYTHON_PIP_VERSION=23.2.1",
+                "PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/4cfa4081d27285bda1220a62a5ebf5b4bd749cdb/public/get-pip.py",
+                "PYTHON_GET_PIP_SHA256=9cc01665956d22b3bf057ae8287b035827bfd895da235bcea200ab3b811790b6",
+                "PYTHONUNBUFFERED=1"
+            ],
+            "Cmd": [
+                "poetry",
+                "run",
+                "python",
+                "batch_runner.py"
+            ],
+            "Image": "clarkzjw/dashjs-runner:master",
+            "Volumes": {
+                "/figures": {}
+            },
+            "WorkingDir": "/app",
+            "Entrypoint": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "bbf03b6a2a2b0c4bf4aae0440202c080a3184d3397d5af37c0a3f69d957ee907",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.depends_on": "dashjs:service_started:false,chrome:service_started:false,stat-server:service_started:false,mongo:service_started:false",
+                "com.docker.compose.image": "sha256:683f3fdbf5986636c475374563dab91e2a4f609db7a537ad0557331227e4365c",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "mmsys24-starlink-livestreaming",
+                "com.docker.compose.project.config_files": "/home/prathamsshah724/mmsys24-starlink-livestreaming/docker-compose-emulation-bbr.yaml,/home/prathamsshah724/mmsys24-starlink-livestreaming/experiments/compose-shaper-clock.override.yaml,/home/prathamsshah724/mmsys24-starlink-livestreaming/experiments/compose-bbr-160-clock.override.yaml",
+                "com.docker.compose.project.working_dir": "/home/prathamsshah724/mmsys24-starlink-livestreaming",
+                "com.docker.compose.service": "runner",
+                "com.docker.compose.version": "5.5.1"
+            }
+        },
+        "NetworkSettings": {
+            "SandboxID": "",
+            "SandboxKey": "",
+            "Ports": {},
+            "Networks": {
+                "dashjs": {
+                    "IPAMConfig": {
+                        "IPv4Address": "192.167.0.103"
+                    },
+                    "Links": null,
+                    "Aliases": [
+                        "dashjs-runner",
+                        "runner"
+                    ],
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "c63dc9435d5446f13b34f3e44db18d3eb4509946919be1fcbbc4be63fb72d78a",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "MacAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "dashjs-runner",
+                        "runner",
+                        "506e94219a2e"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:683f3fdbf5986636c475374563dab91e2a4f609db7a537ad0557331227e4365c",
+            "size": 2968,
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]
+
+=== docker inspect nginx ===
+[
+    {
+        "Id": "aaa48d87879690e95c936a5292dffdeec4cb6c44ab8a1ce0a74a10d7a702092a",
+        "Created": "2026-10-17T12:56:18.913706727Z",
+        "Path": "/opt/bin/entrypoint.sh",
+        "Args": [
+            "/opt/bin/entrypoint.sh"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 1814733,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-10-18T03:56:59.532760183Z",
+            "FinishedAt": "2026-10-18T03:56:59.296043081Z"
+        },
+        "Image": "sha256:e7e142e8965400156245b2837c4f8be5e7e2b11f8f30033e12617806dc3d5d04",
+        "ResolvConfPath": "/var/lib/docker/containers/aaa48d87879690e95c936a5292dffdeec4cb6c44ab8a1ce0a74a10d7a702092a/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/aaa48d87879690e95c936a5292dffdeec4cb6c44ab8a1ce0a74a10d7a702092a/hostname",
+        "HostsPath": "/var/lib/docker/containers/aaa48d87879690e95c936a5292dffdeec4cb6c44ab8a1ce0a74a10d7a702092a/hosts",
+        "LogPath": "/var/lib/docker/containers/aaa48d87879690e95c936a5292dffdeec4cb6c44ab8a1ce0a74a10d7a702092a/aaa48d87879690e95c936a5292dffdeec4cb6c44ab8a1ce0a74a10d7a702092a-json.log",
+        "Name": "/dashjs-nginx",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "unconfined",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "/home/prathamsshah724/mmsys24-starlink-livestreaming/runner/trace/isl-trace.csv:/trace/trace.csv:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "dashjs",
+            "PortBindings": {
+                "443/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "443"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "always",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": [
+                "CAP_NET_ADMIN",
+                "CAP_SYS_ADMIN"
+            ],
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": [],
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": true,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": [
+                "label=disable"
+            ],
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": null,
+            "ReadonlyPaths": null
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/prathamsshah724/mmsys24-starlink-livestreaming/runner/trace/isl-trace.csv",
+                "Destination": "/trace/trace.csv",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "aaa48d878796",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "ExposedPorts": {
+                "443/tcp": {},
+                "80/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "TCP_CONGESTION_CONTROL=bbr",
+                "SHAPER=clock",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NGINX_VERSION=1.25.1",
+                "NJS_VERSION=0.7.12",
+                "PKG_RELEASE=1~bookworm",
+                "DEBIAN_FRONTEND=noninteractive",
+                "DEBCONF_NONINTERACTIVE_SEEN=true",
+                "PYTHONUNBUFFERED=1"
+            ],
+            "Cmd": [
+                "/opt/bin/entrypoint.sh"
+            ],
+            "Image": "clarkzjw/dashjs-nginx:emulation",
+            "Volumes": null,
+            "WorkingDir": "/etc/nginx",
+            "Entrypoint": [
+                "/opt/bin/entrypoint.sh"
+            ],
+            "Labels": {
+                "com.docker.compose.config-hash": "71472fc65a154b7394d98640123805da5225a187b53f14681d893f6585a35b97",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.depends_on": "",
+                "com.docker.compose.image": "sha256:837f9c134a4d4af20814deef49c97c895f440cec5ef1ef8781069c5c107d2b0a",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "mmsys24-starlink-livestreaming",
+                "com.docker.compose.project.config_files": "/home/prathamsshah724/mmsys24-starlink-livestreaming/docker-compose-emulation-bbr.yaml,/home/prathamsshah724/mmsys24-starlink-livestreaming/experiments/compose-shaper-clock.override.yaml,/home/prathamsshah724/mmsys24-starlink-livestreaming/experiments/compose-bbr-160-clock.override.yaml",
+                "com.docker.compose.project.working_dir": "/home/prathamsshah724/mmsys24-starlink-livestreaming",
+                "com.docker.compose.service": "nginx",
+                "com.docker.compose.version": "5.5.1",
+                "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>"
+            },
+            "StopSignal": "SIGQUIT"
+        },
+        "NetworkSettings": {
+            "SandboxID": "92a531e872e163e83449d0324aec0ed7fcc43278bcaf9aff023e98beffada149",
+            "SandboxKey": "/var/run/docker/netns/92a531e872e1",
+            "Ports": {
+                "443/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "443"
+                    },
+                    {
+                        "HostIp": "::",
+                        "HostPort": "443"
+                    }
+                ],
+                "80/tcp": null
+            },
+            "Networks": {
+                "dashjs": {
+                    "IPAMConfig": {
+                        "IPv4Address": "192.167.0.107"
+                    },
+                    "Links": null,
+                    "Aliases": [
+                        "dashjs-nginx",
+                        "nginx"
+                    ],
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "c63dc9435d5446f13b34f3e44db18d3eb4509946919be1fcbbc4be63fb72d78a",
+                    "EndpointID": "4f07f45369b64ae845b312b8afd1514693db662cb412c4d026b0fed8597e409e",
+                    "Gateway": "192.167.0.1",
+                    "IPAddress": "192.167.0.107",
+                    "MacAddress": "b2:4a:00:3a:cf:04",
+                    "IPPrefixLen": 24,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "dashjs-nginx",
+                        "nginx",
+                        "aaa48d878796"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:837f9c134a4d4af20814deef49c97c895f440cec5ef1ef8781069c5c107d2b0a",
+            "size": 3692,
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]

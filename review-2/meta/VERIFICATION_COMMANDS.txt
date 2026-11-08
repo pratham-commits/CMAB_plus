@@ -1,0 +1,21 @@
+# Commands used to verify Review II claims (Oct 2026)
+
+## CMAB @ 3s — three datasets
+python3 review-2/scripts/verify_cmab_claims.py \
+  --label "Review I CUBIC" \
+  --root "/Users/prathamshah/BITS/ACN/Project/review 1/mmsys24-starlink-livestreaming/figures/emulation" \
+  --label "BBR trace OLD" \
+  --root "review-ii-bbr-extension/figures/emulation-bbr" \
+  --label "BBR clock CANONICAL" \
+  --root "review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/figures/emulation-bbr-clock"
+
+## Matrix completeness (clock deliverable)
+cat review-ii-bbr-extension/deliverables/bbr-clock-160-deliverable-20261018-0535/meta/summary_stats.txt
+
+## Transport + shaper on VM (from deliverable meta/)
+# meta/nginx-SHAPER.txt  -> clock
+# meta/nginx-tcp_cc.txt  -> bbr
+
+## Plots
+python3 review-2/scripts/plot_cubic_vs_bbr_all_abr.py \
+  --out-dir review-2/figures/comparison-cubic-vs-bbr-clock

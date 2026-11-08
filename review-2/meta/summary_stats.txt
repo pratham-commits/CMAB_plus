@@ -1,0 +1,12 @@
+Matrix counts (expect 10 per cell):
+abrCMAB [10, 10, 10, 10] sum 40
+abrL2A [10, 10, 10, 10] sum 40
+abrLoLP [10, 10, 10, 10] sum 40
+abrDynamic [10, 10, 10, 10] sum 40
+total 160
+
+CMAB @ 3s BBR clock n= 10
+  mean latency: 3.29s stdev 0.07
+  mean rebuf %: 0.00
+  mean bitrate kbps: 5223
+  mean arm logs: 599
