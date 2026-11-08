@@ -1,5 +1,6 @@
 paper-figures/
-figures/
+# Emulation output at repo root only — keep review-*/figures tracked
+/figures/
 lagos/
 test/
 victoria/
@@ -16,6 +17,21 @@ __pycache__/
 videos
 *.png
 !assets/*.png
+!review-2/figures/**/*.png
+!review-3/figures/**/*.png
+!review-3/demo-ui/public/**/*.png
+
+# Review package local-only bulk
+review-3/data/
+review-3/bbr-cmab-plus-*/
+review-3/demo-ui/node_modules/
+review-3/demo-ui/dist/
+review-3/demo-ui/public/video/*.mp4
+review-3/demo-ui/public/video/*.webm
+review-3/demo-ui/*.log
+review-ii-bbr-extension/deliverables/
+review-ii-bbr-extension/figures/
+review-ii-bbr-extension/BBR-Review-II-Deliverable/
 # Local .terraform directories
 **/.terraform/*
 
