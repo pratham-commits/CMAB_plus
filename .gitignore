@@ -20,6 +20,8 @@ videos
 !review-2/figures/**/*.png
 !review-3/figures/**/*.png
 !review-3/demo-ui/public/**/*.png
+!report/**/*.png
+!final-review/**/*.png
 
 # Review package local-only bulk
 review-3/data/

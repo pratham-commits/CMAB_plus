@@ -17,6 +17,8 @@ artifact **plus** our CMAB+ player changes and the Review I–III evaluation pac
 | `review-3/PROBLEMS.md` | Failure ledger across Reviews I–III |
 | `review-3/demo-ui/` | Interactive demo (phases, Algorithm tab, Problems tab) |
 | `review-ii-bbr-extension/` | Extra BBR validation docs/scripts |
+| `report/` | Final report in SIGCOMM (acmart) format, with figures, result CSVs and scripts |
+| `final-review/` | Final review slides, speaker script, faculty Q&A and the ground-up guide |
 
 **Demo UI**
 

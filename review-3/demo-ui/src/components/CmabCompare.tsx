@@ -58,7 +58,7 @@ export function CmabCompare() {
         <h2 id="compare-heading">Old CMAB vs CMAB+</h2>
         <p>
           Same LinTS bandit, QoE reward, 15 s LEO slots, and catch-up controller as Zhao &amp; Pan
-          (MMSys &apos;24). CMAB+ adds four hardened rules on top of the paper player.
+          (MMSys &apos;24). CMAB+ adds five rules on top of the paper player.
         </p>
       </div>
 

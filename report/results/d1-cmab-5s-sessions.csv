@@ -1,0 +1,11 @@
+session,latency_s,rebuffer_pct,bitrate_kbps
+abrCMAB-0929-1424-target-latency-5s-duration-300-bitrate-variable-0,5.22,0.0,4815
+abrCMAB-0929-1424-target-latency-5s-duration-300-bitrate-variable-1,5.22,0.0,4860
+abrCMAB-0929-1424-target-latency-5s-duration-300-bitrate-variable-2,13.38,25.24,5190
+abrCMAB-0929-1424-target-latency-5s-duration-300-bitrate-variable-3,5.22,0.0,4797
+abrCMAB-0929-1424-target-latency-5s-duration-300-bitrate-variable-4,5.21,0.0,4760
+abrCMAB-0929-1424-target-latency-5s-duration-300-bitrate-variable-5,5.22,0.0,5000
+abrCMAB-0929-1424-target-latency-5s-duration-300-bitrate-variable-6,5.21,0.0,4827
+abrCMAB-0929-1424-target-latency-5s-duration-300-bitrate-variable-7,5.38,0.0,5067
+abrCMAB-0929-1424-target-latency-5s-duration-300-bitrate-variable-8,5.21,0.0,4949
+abrCMAB-0929-1424-target-latency-5s-duration-300-bitrate-variable-9,5.22,0.0,5248

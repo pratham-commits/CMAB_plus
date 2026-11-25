@@ -26,7 +26,7 @@ window, LinTS picks the arm. There is no throughput cap.
 
 That is why a 4 Mbit link still requests 6000 kbps.
 
-## CMAB+ (four rules)
+## CMAB+ (five rules)
 
 **1. Feasible probe.** In the same first \(|A|-1\) decisions of a slot, request
 the highest rung that still fits \(\hat{T}\), not the top of the ladder.
